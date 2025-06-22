@@ -26,7 +26,7 @@ const Navbar = () => {
 
       {user ? (
         <>
-          <NavLink to="/" className="p-2">
+          <NavLink to="/rooms" className="p-2">
             Room's
           </NavLink>
           <NavLink to="/" className="p-2">
@@ -39,10 +39,10 @@ const Navbar = () => {
             <Theme />
           </div>
 
-          <div className="rounded-full border-3 border-gray-400 mx-3 ">
+          <div className="rounded-full  mx-3 mb-3 md:mb-0 ">
             {user?.photoURL && (
               <img
-                className="w-6 h-6 rounded-full object-cover "
+                className="w-8 h-8 rounded-full object-cover "
                 src={user?.photoURL}
                 alt="avatar"
               />
@@ -73,7 +73,7 @@ const Navbar = () => {
   );
   return (
     <>
-      <div className="navbar bg-base-100 shadow-sm montserrat">
+      <div className="navbar relative z-10 bg-base-100 shadow-sm montserrat">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

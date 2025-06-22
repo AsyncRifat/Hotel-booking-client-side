@@ -1,14 +1,12 @@
 import React from 'react';
-import { Outlet } from 'react-router';
-import Navbar from '../components/Navbar';
+import Banner from '../pages/Home/banner/Banner';
+import GoogleMap from '../components/map/GoogleMap';
 
 const MainLayouts = () => {
   return (
     <div>
-      <Navbar />
-      <div className="w-11/12 mx-auto mt-3">
-        <Outlet />
-      </div>
+      <Banner />
+      <GoogleMap />
     </div>
   );
 };

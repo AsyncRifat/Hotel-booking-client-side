@@ -10,17 +10,17 @@ const Banner = () => {
   return (
     <>
       <div
-        className="rounded-4xl mt-5 relative w-full h-[450px] bg-cover bg-no-repeat"
+        className="  relative w-full h-[550px] bg-cover bg-no-repeat"
         style={{
           backgroundImage: `url(https://i.ibb.co/kgf2XPVZ/banner-11.jpg)`,
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           width: '100%',
-          height: '450px',
+          height: '550px',
           boxShadow: '-20px 0 30px rgba(0,0,0,0.2)',
         }}
       >
-        <div className="absolute rounded-4xl inset-0 bg-gradient-to-r from-black via-transparent to-transparent opacity-90 z-0"></div>
+        <div className="absolute  inset-0 bg-gradient-to-r from-black via-transparent to-transparent opacity-90 z-0"></div>
 
         <div className="relative z-10 space-y-3 py-32 px-2 md:py-20 pl-7 md:pl-20">
           <Slide>
@@ -32,11 +32,17 @@ const Banner = () => {
           <div>
             {user ? (
               <>
-                <p className="md:text-2xl lg:text-2xl md:font-bold lg:font-bold text-amber-500 mt-7 mb-2 openSans">
+                <div className="md:text-2xl lg:text-2xl md:font-semibold lg:font-semibold text-amber-500 mt-7 mb-2 openSans">
+                  <p className="font-bold text-amber-200 montserrat">
+                    {user.displayName}
+                  </p>
                   Welcome to Our Hotel
-                </p>
-                <button className="flex items-center gap-x-2 px-7 py-2 text-2xl border bg-green-500 border-green-500 text-gray-800 cursor-pointer hover:rounded-4xl hover:bg-green-500 font-semibold hover:text-black  shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl">
-                  Explore <CiLocationArrow1 size={24} />
+                </div>
+                <button
+                  onClick={() => navigate('/rooms')}
+                  className="flex items-center gap-x-2 px-7 py-2 text-2xl border bg-green-500 border-green-500 text-gray-800 cursor-pointer hover:rounded-4xl hover:bg-green-500 font-semibold hover:text-black  shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl font-serif"
+                >
+                  Room's <CiLocationArrow1 size={24} />
                 </button>
               </>
             ) : (
