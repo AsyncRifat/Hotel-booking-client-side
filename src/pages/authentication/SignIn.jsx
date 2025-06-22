@@ -60,11 +60,11 @@ const SignIn = () => {
       });
   };
   return (
-    <div className="hero bg-base-100 min-h-screen">
+    <div className="hero bg-base-100 sm:min-h-screen">
       <div className="hero-content flex-col-reverse lg:flex-row-reverse max-w-6xl w-full px-4 gap-8">
         <div className="flex justify-center items-center w-full lg:w-1/2">
           <Lottie
-            className="w-60 sm:w-72 md:w-80 lg:w-96 xl:w-[500px] h-auto"
+            className="w-60 sm:w-72 md:w-80 lg:w-96 xl:w-[500px] h-auto hidden lg:block"
             animationData={signInLottie}
             loop={true}
           />
@@ -76,6 +76,15 @@ const SignIn = () => {
               Log In Member
             </h1>
             <SocialLogin from={from} />
+            <p className="text-sm text-center dark:text-gray-600">
+              Don't have account?{' '}
+              <Link
+                to="/authentication/sign-up"
+                className="focus:underline hover:underline text-blue-600"
+              >
+                Sign up here
+              </Link>
+            </p>
             <form onSubmit={handleSignIn}>
               <div className="form-control mb-4">
                 <label className="label">

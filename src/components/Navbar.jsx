@@ -35,6 +35,9 @@ const Navbar = () => {
           <NavLink to="/" className="p-2">
             My Booking
           </NavLink>
+          <div className="px-2 hidden lg:block">
+            <Theme />
+          </div>
 
           <div className="rounded-full border-3 border-gray-400 mx-3 ">
             {user?.photoURL && (
@@ -47,7 +50,7 @@ const Navbar = () => {
           </div>
 
           <Link
-            className="px-3 py-1.5 rounded-md bg-yellow-400"
+            className="px-3 py-1.5 rounded-md bg-yellow-400 dark:bg-yellow-600"
             onClick={handleUserSignOut}
           >
             Log Out
