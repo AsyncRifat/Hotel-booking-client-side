@@ -5,11 +5,15 @@ import SignIn from '../pages/authentication/SignIn';
 import SignUp from '../pages/authentication/SignUp';
 import MainAuthLayout from '../layout/MainAuthLayout';
 import Rooms from '../pages/rooms/Rooms';
+import AddRoom from '../pages/addRoom/AddRoom';
+import PrivateRoute from '../providers/PrivateRoute';
+import MyBooking from '../pages/myBooking/MyBooking';
+import MyBookingLayouts from '../layout/MyBookingLayouts';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    Component: MainLayouts,
+    element: <MainLayouts />,
   },
   {
     path: '/rooms',
@@ -17,7 +21,37 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component: Rooms,
+        element: <Rooms />,
+      },
+      {
+        path: '/rooms/add-room',
+        element: (
+          <PrivateRoute>
+            <AddRoom />
+          </PrivateRoute>
+        ),
+      },
+      // {
+      //   path: 'my-booking',
+      //   element: (
+      //     <PrivateRoute>
+      //       <MyBooking />
+      //     </PrivateRoute>
+      //   ),
+      // },
+    ],
+  },
+  {
+    path: 'my-booking',
+    Component: MyBookingLayouts,
+    children: [
+      {
+        index: true,
+        element: (
+          <PrivateRoute>
+            <MyBooking />
+          </PrivateRoute>
+        ),
       },
     ],
   },

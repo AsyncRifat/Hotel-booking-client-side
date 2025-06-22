@@ -4,7 +4,6 @@ import Theme from '../theme/Theme';
 import { RiMenuFold2Line } from 'react-icons/ri';
 import { AuthContext } from '../providers/AuthContext';
 
-
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -20,21 +19,42 @@ const Navbar = () => {
   };
   const link = (
     <>
-      <NavLink to="/" className="p-2">
+      <NavLink
+        to="/"
+        className="p-2 py-1 mr-2 active:bg-gray-200 active:rounded-lg"
+      >
         Home
+      </NavLink>
+      <NavLink
+        to="/rooms"
+        className="py-1 px-2 mr-1.5 active:text-green-600 active:bg-gray-100 active:rounded-lg active:dark:bg-gray-700"
+      >
+        Room's
       </NavLink>
 
       {user ? (
         <>
-          <NavLink to="/rooms" className="p-2">
-            Room's
-          </NavLink>
-          <NavLink to="/" className="p-2">
+          <NavLink
+            to="/rooms/add-room"
+            className={({ isActive }) =>
+              isActive
+                ? 'bg-gray-100 dark:bg-gray-700 rounded-lg py-1 px-2 '
+                : ' py-1 px-2'
+            }
+          >
             Add Room
           </NavLink>
-          <NavLink to="/" className="p-2">
+          <NavLink
+            to="/my-booking"
+            className={({ isActive }) =>
+              isActive
+                ? 'bg-gray-100 dark:bg-gray-700 rounded-lg py-1 px-2 '
+                : ' py-1 px-2'
+            }
+          >
             My Booking
           </NavLink>
+
           <div className="px-2 hidden lg:block">
             <Theme />
           </div>
@@ -58,10 +78,24 @@ const Navbar = () => {
         </>
       ) : (
         <>
-          <NavLink to="/authentication/sign-in" className="p-2 md:ml-1">
+          <NavLink
+            to="/authentication/sign-in"
+            className={({ isActive }) =>
+              isActive
+                ? 'bg-gray-200 dark:bg-gray-700 rounded-lg py-1 px-2 md:ml-1 '
+                : ' py-1 px-2 md:ml-1'
+            }
+          >
             Sign In
           </NavLink>
-          <NavLink to="/authentication/sign-up" className="p-2">
+          <NavLink
+            to="/authentication/sign-up"
+            className={({ isActive }) =>
+              isActive
+                ? 'bg-gray-200 dark:bg-gray-700 rounded-lg py-1 px-2'
+                : ' py-1 px-2'
+            }
+          >
             Sign Up
           </NavLink>
           <div className="ml-4 mr-6 hidden lg:block">
@@ -75,8 +109,12 @@ const Navbar = () => {
     <>
       <div className="navbar relative z-10 bg-base-100 shadow-sm montserrat">
         <div className="navbar-start">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div className="dropdown dropdown-hover">
+            <div
+              tabIndex={0}
+              role="button"
+              className="active:bg-gray-200 active:rounded-lg menu lg:hidden"
+            >
               <RiMenuFold2Line size={25} />
             </div>
             <ul
@@ -94,9 +132,6 @@ const Navbar = () => {
             />
             <h2 className="font-extrabold text-xl text-green-600 ">Booking.</h2>
           </Link>
-          {/* <div className="hidden lg:block">
-            <Theme />
-          </div> */}
         </div>
 
         <div className="navbar-end lg:hidden mr-5">

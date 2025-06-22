@@ -7,6 +7,7 @@ const MainLayouts = () => {
     <div>
       <Banner />
       <HotelMap />
+      <h2 className='mt-5'>Hello</h2>
     </div>
   );
 };
