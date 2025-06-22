@@ -42,7 +42,7 @@ const Banner = () => {
                   onClick={() => navigate('/rooms')}
                   className="flex items-center gap-x-2 px-7 py-2 text-2xl border bg-green-500 border-green-500 text-gray-800 cursor-pointer hover:rounded-4xl hover:bg-green-500 font-semibold hover:text-black  shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl font-serif"
                 >
-                  Room's <CiLocationArrow1 size={24} />
+                  Room's Page<CiLocationArrow1 size={24} />
                 </button>
               </>
             ) : (
