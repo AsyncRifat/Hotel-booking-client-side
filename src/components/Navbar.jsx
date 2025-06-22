@@ -1,34 +1,39 @@
-import React from 'react';
-import { Link, NavLink } from 'react-router';
+import React, { useContext } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router';
 import Theme from '../theme/Theme';
 import { RiMenuFold2Line } from 'react-icons/ri';
+import { AuthContext } from '../providers/AuthContext';
+
 
 const Navbar = () => {
+  const { user, signOutUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleUserSignOut = () => {
+    signOutUser()
+      .then(() => {
+        navigate('/authentication/sign-in');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
   const link = (
     <>
       <NavLink to="/" className="p-2">
         Home
       </NavLink>
-      <NavLink to="/sign-in" className="p-2 md:ml-1">
-        Sign In
-      </NavLink>
-      <NavLink to="/sign-up" className="p-2">
-        Sign Up
-      </NavLink>
-      <div className='ml-4 mr-6 hidden lg:block'>
-        <Theme />
-      </div>
 
-      {/* {user ? (
+      {user ? (
         <>
-          <NavLink to="/addCoffee" className="p-2">
-            Add Coffee
+          <NavLink to="/" className="p-2">
+            Room's
           </NavLink>
-          <NavLink to={`/my-added-coffee/${user?.email}`} className="p-2">
-            My Added coffee's
+          <NavLink to="/" className="p-2">
+            Add Room
           </NavLink>
-          <NavLink to="/my-orders" className="p-2">
-            My Orders
+          <NavLink to="/" className="p-2">
+            My Booking
           </NavLink>
 
           <div className="rounded-full border-3 border-gray-400 mx-3 ">
@@ -50,14 +55,17 @@ const Navbar = () => {
         </>
       ) : (
         <>
-          <NavLink to="/sign-in" className="p-2 md:ml-1">
+          <NavLink to="/authentication/sign-in" className="p-2 md:ml-1">
             Sign In
           </NavLink>
-          <NavLink to="/sign-up" className="p-2">
+          <NavLink to="/authentication/sign-up" className="p-2">
             Sign Up
           </NavLink>
+          <div className="ml-4 mr-6 hidden lg:block">
+            <Theme />
+          </div>
         </>
-      )} */}
+      )}
     </>
   );
   return (
