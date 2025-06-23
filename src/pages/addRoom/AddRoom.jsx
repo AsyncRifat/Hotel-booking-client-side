@@ -1,10 +1,14 @@
 import React, { useContext } from 'react';
 import useDocumentTitle from '../../hooks/useDocumentTitle';
 import { AuthContext } from '../../providers/AuthContext';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router';
 
 const AddRoom = () => {
   useDocumentTitle('Booking | Add Room');
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleAddFrom = e => {
     e.preventDefault();
@@ -12,17 +16,31 @@ const AddRoom = () => {
     const form = e.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-    // const { available, ...newData } = data;
-    // console.log(available, 'porer data:', newData);
+    const { photo1, photo2, ...allData } = data;
+    allData.photo = { photo1, photo2 };
 
-    const descriptionString = data.description;
-    const descriptionDirty = descriptionString.split(',');
-    const descriptionClean = descriptionDirty.map(req => req.trim());
-    data.description = descriptionClean;
+    allData.amenities = allData.amenities.split(',').map(res => res.trim());
 
-    data.amenities = data.amenities.split(',').map(res => res.trim());
-
-    console.log(data);
+    // save the data in database
+    axios
+      .post(`${import.meta.env.VITE_API_URL}/add-room`, allData)
+      .then(res => {
+        if (res.data?.insertedId) {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Your Room has been submitted',
+            showConfirmButton: false,
+            timer: 1500,
+            width: '300px',
+          });
+        }
+        form.reset();
+        navigate('/rooms');
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   return (
