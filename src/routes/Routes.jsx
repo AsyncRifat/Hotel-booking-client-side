@@ -10,6 +10,7 @@ import PrivateRoute from '../providers/PrivateRoute';
 import MyBooking from '../pages/myBooking/MyBooking';
 import MyBookingLayouts from '../layout/MyBookingLayouts';
 import Loading from '../components/loader/Loading';
+import RoomDetails from '../pages/rooms/roomDetails/RoomDetails';
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,17 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AddRoom />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/rooms/:id',
+        HydrateFallback: Loading,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/rooms/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <RoomDetails />
           </PrivateRoute>
         ),
       },

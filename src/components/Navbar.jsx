@@ -106,8 +106,8 @@ const Navbar = () => {
     </>
   );
   return (
-    <>
-      <div className="navbar relative z-10 bg-base-100 shadow-sm montserrat">
+    <div className="sticky top-0 z-40">
+      <div className="navbar relative z-10 bg-base-100 shadow-sm montserrat ">
         <div className="navbar-start">
           <div className="dropdown dropdown-hover">
             <div
@@ -141,7 +141,7 @@ const Navbar = () => {
           {link}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
