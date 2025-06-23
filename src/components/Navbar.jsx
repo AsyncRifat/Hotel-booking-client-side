@@ -38,7 +38,7 @@ const Navbar = () => {
             to="/rooms/add-room"
             className={({ isActive }) =>
               isActive
-                ? 'bg-gray-100 dark:bg-gray-700 rounded-lg py-1 px-2 '
+                ? 'bg-gray-50 dark:bg-gray-800 rounded-lg py-1 px-2 '
                 : ' py-1 px-2'
             }
           >
@@ -48,7 +48,7 @@ const Navbar = () => {
             to="/my-booking"
             className={({ isActive }) =>
               isActive
-                ? 'bg-gray-100 dark:bg-gray-700 rounded-lg py-1 px-2 '
+                ? 'bg-gray-50 dark:bg-gray-800 rounded-lg py-1 px-2 '
                 : ' py-1 px-2'
             }
           >
@@ -126,9 +126,9 @@ const Navbar = () => {
           </div>
           <Link className=" flex items-end mx-1 md:mx-9" to="/">
             <img
-              src="https://i.ibb.co/8gc0gWn6/5-star-hotel.png"
+              src="https://i.ibb.co/8LdhJmBm/icons8-booking-48.png"
               alt=""
-              className="w-10 h-10"
+              className="w-9 h-9"
             />
             <h2 className="font-extrabold text-xl text-green-600 ">Booking.</h2>
           </Link>

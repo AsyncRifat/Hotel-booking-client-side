@@ -31,14 +31,6 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      // {
-      //   path: 'my-booking',
-      //   element: (
-      //     <PrivateRoute>
-      //       <MyBooking />
-      //     </PrivateRoute>
-      //   ),
-      // },
     ],
   },
   {
