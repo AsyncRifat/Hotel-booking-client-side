@@ -18,8 +18,11 @@ import UpdateRoom from '../pages/updateRoom/UpdateRoom';
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <MainLayouts />,
     errorElement: <ErrorPage />,
+    HydrateFallback: Loading,
+    loader: () =>
+      fetch(`${import.meta.env.VITE_API_URL}/rooms?sort=rating&limit=6`),
+    element: <MainLayouts />,
   },
   {
     path: '/rooms',

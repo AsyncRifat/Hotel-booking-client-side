@@ -11,7 +11,7 @@ const customIcon = new L.Icon({
 
 const DhakaLocation = () => {
   return (
-    <div className="min-h-[520px] flex flex-col items-center justify-center bg-gradient-to-r from-gray-50 to-gray-500">
+    <div className="min-h-[520px] flex flex-col items-center justify-center bg-gradient-to-r from-[#eff7f7] to-teal-50">
       <motion.h1
         className="text-4xl md:text-5xl font-bold mb-4 text-gray-800 openSans"
         initial={{ opacity: 0, y: -30 }}
@@ -32,7 +32,7 @@ const DhakaLocation = () => {
         Book now for the best experience!
       </motion.p>
 
-      <div className="w-full max-w-4xl rounded-2xl overflow-hidden shadow-xl border-4 border-gray-500">
+      <div className="w-full max-w-4xl rounded-2xl overflow-hidden shadow-xl border-4 border-gray-300">
         <MapContainer
           center={[23.7496, 90.3941]}
           zoom={14}
