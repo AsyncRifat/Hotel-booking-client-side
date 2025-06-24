@@ -1,9 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa6';
 import { IoLocationOutline } from 'react-icons/io5';
+import Swal from 'sweetalert2';
 
 const MyPostedRoomCard = ({ postedRoom }) => {
-  const { title, price, photo, location, rating } = postedRoom;
+  const [myPostedRoom, setMyPostedRoom] = useState(null);
+  useEffect(() => {
+    if (postedRoom) {
+      setMyPostedRoom(postedRoom);
+    }
+  }, [postedRoom]);
+
+  const handleDelete = id => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then(result => {
+      if (result.isConfirmed) {
+        fetch(`${import.meta.env.VITE_API_URL}/room-delete/${id}`, {
+          method: 'DELETE',
+        })
+          .then(res => res.json())
+          .then(data => {
+            if (data.deletedCount) {
+              Swal.fire({
+                title: 'Deleted!',
+                text: 'Your Room has been deleted.',
+                icon: 'success',
+              });
+              setMyPostedRoom(null);
+            }
+          });
+      }
+    });
+  };
+
+  if (!myPostedRoom) return null;
+
+  const { title, price, photo, location, rating, _id } = myPostedRoom;
+
   return (
     <>
       <div className="card bg-base-100 dark:bg-gray-800 w-96 shadow-sm">
@@ -31,9 +71,12 @@ const MyPostedRoomCard = ({ postedRoom }) => {
             </p>
           </div>
           <div className=" flex justify-around gap-x-2">
-            <div className="border flex-1 text-center py-2 text-gray-400 hover:bg-red-400  dark:hover:text-black">
+            <button
+              onClick={() => handleDelete(_id)}
+              className="border flex-1 text-center py-2 text-gray-400 hover:bg-red-400  dark:hover:text-black"
+            >
               <span className="text-black dark:text-white">Delete</span>
-            </div>
+            </button>
             <div className="border flex-1 text-center py-2 text-gray-400 hover:bg-cyan-700 hover:text-white dark:hover:text-black">
               <span className="text-black dark:text-white">Update</span>
             </div>
