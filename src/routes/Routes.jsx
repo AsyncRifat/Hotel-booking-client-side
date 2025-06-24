@@ -12,6 +12,7 @@ import MyBookingLayouts from '../layout/MyBookingLayouts';
 import Loading from '../components/loader/Loading';
 import RoomDetails from '../pages/rooms/roomDetails/RoomDetails';
 import ErrorPage from '../components/errorPage/ErrorPage';
+import MyRoom from '../pages/myRooms/MyRoom';
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <RoomDetails />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/rooms/my-room',
+        element: (
+          <PrivateRoute>
+            <MyRoom />
           </PrivateRoute>
         ),
       },

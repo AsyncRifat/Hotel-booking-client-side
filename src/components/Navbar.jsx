@@ -57,8 +57,13 @@ const Navbar = () => {
           </NavLink>
 
           <div className="dropdown dropdown-hover mr-2">
-            <div tabIndex={0} role="button" className="flex items-center cursor-pointer m-1">
-              My Control <MdOutlineKeyboardArrowDown size={22} className='text-gray-400'/>
+            <div
+              tabIndex={0}
+              role="button"
+              className="flex items-center cursor-pointer m-1"
+            >
+              My Control{' '}
+              <MdOutlineKeyboardArrowDown size={22} className="text-gray-400" />
             </div>
             <ul
               tabIndex={0}
@@ -78,7 +83,7 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink
-                  to="/rooms"
+                  to="/rooms/my-room"
                   className={({ isActive }) =>
                     isActive
                       ? 'bg-gray-100 dark:bg-gray-800 rounded-lg py-1 px-2 '

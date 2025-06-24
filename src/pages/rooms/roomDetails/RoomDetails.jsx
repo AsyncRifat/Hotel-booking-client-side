@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData, useNavigate } from 'react-router';
 import { MdDescription } from 'react-icons/md';
 import { IoLocationOutline } from 'react-icons/io5';
@@ -8,11 +8,13 @@ import { FaStar } from 'react-icons/fa6';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { AuthContext } from '../../../providers/AuthContext';
 
 const RoomDetails = () => {
   useDocumentTitle('Room Details');
   const singleRoomDetails = useLoaderData();
   const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
   const {
     title,
@@ -31,7 +33,31 @@ const RoomDetails = () => {
     capacity,
   } = singleRoomDetails;
 
+  // console.log(_id);
+
   const [confirmOrder, setConfirmOrder] = useState(false);
+
+  // for already booking check
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_API_URL}/orders?id=${_id}`)
+      .then(res => res.json())
+      .then(data => {
+        // console.log(data);
+        setSameId(data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }, [_id]);
+
+  const [sameId, setSameId] = useState([]);
+  const [rooId, setRooId] = useState('');
+
+  useEffect(() => {
+    sameId.map(roomId => setRooId(roomId));
+  }, [sameId]);
+
+  // console.log(rooId?.roomId);
 
   const [startedDate, setStatedDate] = useState('');
   const [endedDate, setEndedDate] = useState('');
@@ -40,6 +66,16 @@ const RoomDetails = () => {
 
     const name = e.target.name.value;
     const email = e.target.email.value;
+
+    if (hr_email === email) {
+      toast.warn('What!! is Yours');
+      return;
+    }
+
+    if (rooId?.roomId === _id) {
+      toast.warn('You already booking & check your booking page');
+      return;
+    }
 
     if (!startedDate || !name || !email || !endedDate) {
       toast.warn('Please fill-up all information!');
@@ -63,8 +99,6 @@ const RoomDetails = () => {
     };
 
     console.log(orderData);
-    // Call parent onConfirm handler
-    // onConfirm(orderData);
 
     axios
       .post(`${import.meta.env.VITE_API_URL}/order`, orderData)
@@ -73,7 +107,7 @@ const RoomDetails = () => {
           Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Your application has been submitted',
+            title: 'Your Booking has been submitted',
             showConfirmButton: false,
             timer: 1500,
             width: '300px',
@@ -148,6 +182,7 @@ const RoomDetails = () => {
                   <input
                     type="text"
                     name="name"
+                    defaultValue={user?.displayName}
                     placeholder="Enter Your Name"
                     className="input input-bordered w-full"
                   />
@@ -160,8 +195,10 @@ const RoomDetails = () => {
                   <input
                     type="email"
                     name="email"
+                    value={user?.email}
                     placeholder="Email"
                     className="input input-bordered w-full"
+                    readOnly
                   />
                 </div>
 
@@ -171,7 +208,7 @@ const RoomDetails = () => {
                       htmlFor="date"
                       className="text-gray-600 dark:text-gray-400 block mb-1"
                     >
-                      Select Date:
+                      Start Date:
                     </label>
                     <input
                       type="date"
@@ -186,7 +223,7 @@ const RoomDetails = () => {
                       htmlFor="date"
                       className="text-gray-600 dark:text-gray-400 block mb-1"
                     >
-                      Select Date:
+                      End Date:
                     </label>
                     <input
                       type="date"
@@ -199,7 +236,7 @@ const RoomDetails = () => {
                 </div>
 
                 <button type="submit" className="btn btn-success mt-5">
-                  Confirm Order
+                  Confirm Booking
                 </button>
               </form>
             </div>
@@ -265,7 +302,8 @@ const RoomDetails = () => {
               </div>
               <div className="justify-start col-span-4 mt-3">
                 <p className=" gap-x-2 mb-6">
-                  <span className=" text-gray-500 gap-1.5">Price: </span>${price}{' '}
+                  <span className=" text-gray-500 gap-1.5">Price: </span>$
+                  {price}{' '}
                   <span className="font-light text-xs">Every Night</span>
                 </p>
 

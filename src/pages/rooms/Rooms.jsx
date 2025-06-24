@@ -8,9 +8,6 @@ const Rooms = () => {
 
   const initialRooms = useLoaderData();
 
-  // const [coffees, setCoffees] = useState(
-  //   Array.isArray(initialCoffees) ? initialCoffees : []
-  // );
   return (
     <div>
       <h2 className="text-2xl">all rooms {initialRooms.length}</h2>
