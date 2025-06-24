@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa6';
 import { IoLocationOutline } from 'react-icons/io5';
+import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 
 const MyPostedRoomCard = ({ postedRoom }) => {
   const [myPostedRoom, setMyPostedRoom] = useState(null);
+  const navigate = useNavigate();
   useEffect(() => {
     if (postedRoom) {
       setMyPostedRoom(postedRoom);
@@ -77,9 +79,12 @@ const MyPostedRoomCard = ({ postedRoom }) => {
             >
               <span className="text-black dark:text-white">Delete</span>
             </button>
-            <div className="border flex-1 text-center py-2 text-gray-400 hover:bg-cyan-700 hover:text-white dark:hover:text-black">
+            <button
+              onClick={() => navigate(`/rooms/update-room/${_id}`)}
+              className="border flex-1 text-center py-2 text-gray-400 hover:bg-cyan-700 hover:text-white dark:hover:text-black"
+            >
               <span className="text-black dark:text-white">Update</span>
-            </div>
+            </button>
           </div>
         </div>
       </div>

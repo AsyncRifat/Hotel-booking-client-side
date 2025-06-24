@@ -13,6 +13,7 @@ import Loading from '../components/loader/Loading';
 import RoomDetails from '../pages/rooms/roomDetails/RoomDetails';
 import ErrorPage from '../components/errorPage/ErrorPage';
 import MyRoom from '../pages/myRooms/MyRoom';
+import UpdateRoom from '../pages/updateRoom/UpdateRoom';
 
 export const router = createBrowserRouter([
   {
@@ -55,6 +56,17 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyRoom />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/rooms/update-room/:id',
+        HydrateFallback: Loading,
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/rooms/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <UpdateRoom />
           </PrivateRoute>
         ),
       },

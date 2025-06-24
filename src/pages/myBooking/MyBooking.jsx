@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import useDocumentTitle from '../../hooks/useDocumentTitle';
 import { AuthContext } from '../../providers/AuthContext';
 import BookingCard from './myBookingCard/BookingCard';
+import EmptyPage from '../../components/emptyPage/EmptyPage';
 
 const MyBooking = () => {
   useDocumentTitle('My Booking');
@@ -21,6 +22,9 @@ const MyBooking = () => {
         });
     }
   }, [user]);
+
+  if (booking.length < 1) return <EmptyPage />;
+
 
   return (
     <div>

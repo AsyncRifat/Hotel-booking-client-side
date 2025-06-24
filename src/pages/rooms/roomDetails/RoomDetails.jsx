@@ -73,7 +73,7 @@ const RoomDetails = () => {
     }
 
     if (rooId?.roomId === _id) {
-      toast.warn('You already booking & check your booking page');
+      toast.warn('Already booking');
       return;
     }
 
@@ -306,7 +306,6 @@ const RoomDetails = () => {
                   {price}{' '}
                   <span className="font-light text-xs">Every Night</span>
                 </p>
-
                 <p className=" gap-x-2 mb-6">
                   <span className=" text-gray-500 gap-1.5">Available: </span>
                   <span className="uppercase font-semibold text-green-600">
