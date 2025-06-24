@@ -11,15 +11,18 @@ import MyBooking from '../pages/myBooking/MyBooking';
 import MyBookingLayouts from '../layout/MyBookingLayouts';
 import Loading from '../components/loader/Loading';
 import RoomDetails from '../pages/rooms/roomDetails/RoomDetails';
+import ErrorPage from '../components/errorPage/ErrorPage';
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <MainLayouts />,
+    errorElement: <ErrorPage />,
   },
   {
     path: '/rooms',
     element: <MainAuthLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -51,6 +54,7 @@ export const router = createBrowserRouter([
   {
     path: 'my-booking',
     Component: MyBookingLayouts,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -65,6 +69,7 @@ export const router = createBrowserRouter([
   {
     path: 'authentication',
     Component: AuthLayout,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: '/authentication/sign-in',

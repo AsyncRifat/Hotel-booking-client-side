@@ -3,6 +3,7 @@ import { Link, NavLink, useNavigate } from 'react-router';
 import Theme from '../theme/Theme';
 import { RiMenuFold2Line } from 'react-icons/ri';
 import { AuthContext } from '../providers/AuthContext';
+import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
@@ -34,7 +35,7 @@ const Navbar = () => {
 
       {user ? (
         <>
-          <NavLink
+          {/* <NavLink
             to="/rooms/add-room"
             className={({ isActive }) =>
               isActive
@@ -43,7 +44,7 @@ const Navbar = () => {
             }
           >
             Add Room
-          </NavLink>
+          </NavLink> */}
           <NavLink
             to="/my-booking"
             className={({ isActive }) =>
@@ -54,6 +55,41 @@ const Navbar = () => {
           >
             My Booking
           </NavLink>
+
+          <div className="dropdown dropdown-hover mr-2">
+            <div tabIndex={0} role="button" className="flex items-center cursor-pointer m-1">
+              My Control <MdOutlineKeyboardArrowDown size={22} className='text-gray-400'/>
+            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu bg-base-100 rounded-box z-1 w-32 p-2 shadow-sm openSans"
+            >
+              <li>
+                <NavLink
+                  to="/rooms/add-room"
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'bg-gray-100 dark:bg-gray-800 rounded-lg py-1 px-2 mb-1'
+                      : ' py-1 px-2 mb-1'
+                  }
+                >
+                  Add Room
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/rooms"
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'bg-gray-100 dark:bg-gray-800 rounded-lg py-1 px-2 '
+                      : ' py-1 px-2'
+                  }
+                >
+                  My Room
+                </NavLink>
+              </li>
+            </ul>
+          </div>
 
           <div className="px-2 hidden lg:block">
             <Theme />
