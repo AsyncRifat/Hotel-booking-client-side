@@ -13,7 +13,6 @@ const MainLayouts = () => {
   return (
     <div className="bg-teal-50">
       <Banner />
-      {/* <SortingData /> */}
 
       <h1 className="text-5xl jost mt-14 mb-5 text-black text-center font-semibold">
         Our Best Rooms

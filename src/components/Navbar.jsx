@@ -35,16 +35,6 @@ const Navbar = () => {
 
       {user ? (
         <>
-          {/* <NavLink
-            to="/rooms/add-room"
-            className={({ isActive }) =>
-              isActive
-                ? 'bg-gray-50 dark:bg-gray-800 rounded-lg py-1 px-2 '
-                : ' py-1 px-2'
-            }
-          >
-            Add Room
-          </NavLink> */}
           <NavLink
             to="/my-booking"
             className={({ isActive }) =>

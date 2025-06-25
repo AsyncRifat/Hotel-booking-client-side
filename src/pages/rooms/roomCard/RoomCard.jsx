@@ -1,9 +1,12 @@
-import React from 'react';
+// import axios from 'axios';
+// import { useState } from 'react';
+// import { useEffect } from 'react';
 import { FaStar } from 'react-icons/fa6';
 import { Link } from 'react-router';
 
 const RoomCard = ({ room }) => {
-  const { title, price, rating, location, available,_id } = room;
+  const { title, price, rating, location, available, _id } = room;
+  // console.log(_id);
 
   return (
     <>
@@ -25,21 +28,26 @@ const RoomCard = ({ room }) => {
             </p>
             <p className="flex justify-center items-center gap-2 openSans">
               <span className="font-medium text-sm openSans">Available:</span>
-              <span className="font-medium text-green-600 uppercase">{available}</span>
+              <span className="font-medium text-green-600 uppercase">
+                {available}
+              </span>
             </p>
           </div>
           <div className="flex justify-between items-center">
             <p className="font-normal text-base openSans">{location}</p>
             <p className="flex justify-center items-center gap-2 openSans">
               <FaStar size={22} className="text-yellow-400" />
-              {rating}
+              {rating.length}
             </p>
           </div>
         </div>
 
         <div className="absolute inset-x-10 bottom-0 bg-white dark:bg-gray-800 rounded-t-3xl p-4 translate-y-full group-hover:-translate-y-5 transition-all duration-400">
           <div className="flex justify-center mt-3">
-            <Link to={`/rooms/${_id}`} className="px-5 py-2 rounded-full bg-blue-600 text-white font-medium hover:bg-blue-800 transition hover:cursor-pointer">
+            <Link
+              to={`/rooms/${_id}`}
+              className="px-5 py-2 rounded-full bg-blue-600 text-white font-medium hover:bg-blue-800 transition hover:cursor-pointer"
+            >
               Book Now
             </Link>
           </div>

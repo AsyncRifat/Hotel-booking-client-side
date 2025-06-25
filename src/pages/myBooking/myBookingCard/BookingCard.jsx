@@ -8,9 +8,6 @@ const BookingCard = ({ singleBooking }) => {
 
   const [review, setReview] = useState(false);
 
-  // console.log(_id);
-  // console.log(photo);
-
   useEffect(() => {
     if (singleBooking) {
       setMyBooking(singleBooking);
@@ -18,23 +15,45 @@ const BookingCard = ({ singleBooking }) => {
   }, [singleBooking]);
 
   const [star, setStar] = useState('');
+  const [starCount, setStarCount] = useState();
+  console.log(starCount);
 
   const handleReview = e => {
     e.preventDefault();
+    const review = e.target.review.value;
+
     const id = roomId;
 
     const reviewStar = parseInt(star);
-    console.log(reviewStar);
 
-    console.log(id);
+    const reviewData = {
+      roomId: id,
+      name: name,
+      star: reviewStar,
+      review: review,
+    };
+    console.log(reviewData);
 
     axios
       .patch(`${import.meta.env.VITE_API_URL}/review/${id}`, {
-        rating: reviewStar,
+        rating: starCount,
       })
       .then(res => {
         if (res.data.modifiedCount) {
           toast.success('Review Submitted');
+
+          // save in data base another collection
+          axios
+            .post(`${import.meta.env.VITE_API_URL}/set-review`, reviewData)
+            .then(res => {
+              if (res.data?.insertedId) {
+                toast.success('Review in data base Submitted');
+              }
+            })
+            .catch(error => {
+              console.log(error);
+            });
+
           setReview(false);
         }
       })
@@ -51,7 +70,7 @@ const BookingCard = ({ singleBooking }) => {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: 'Yes,  Booking cancel!',
     }).then(result => {
       if (result.isConfirmed) {
         fetch(`${import.meta.env.VITE_API_URL}/booking-delete/${id}`, {
@@ -62,7 +81,7 @@ const BookingCard = ({ singleBooking }) => {
             if (data.deletedCount) {
               Swal.fire({
                 title: 'Deleted!',
-                text: 'Your Room has been deleted.',
+                text: 'Your Booking cancel',
                 icon: 'success',
               });
               setMyBooking(null);
@@ -72,7 +91,8 @@ const BookingCard = ({ singleBooking }) => {
     });
   };
   if (!myBooking) return null;
-  const { title, photo, price, statedDate, EndedDate, _id, roomId } = myBooking;
+  const { title, photo, price, statedDate, EndedDate, _id, roomId, name } =
+    myBooking;
 
   return (
     <>
@@ -108,7 +128,7 @@ const BookingCard = ({ singleBooking }) => {
             </button>
 
             {review && (
-              <div className="absolute top-38 md:top-25 right-1.5 md:w-[320px] bg-base-100 dark:bg-gray-800 border border-blue-300 dark:border-gray-600 shadow-xl rounded-xl px-5 py-2 z-20">
+              <div className="absolute top-0 md:top-0 right-1.5 md:w-[320px] bg-base-100 dark:bg-gray-800 border border-blue-300 dark:border-gray-600 shadow-xl rounded-xl px-5 py-2 z-20">
                 <div className="flex justify-between items-center mb-2">
                   <h2 className="text-lg font-bold text-gray-800 dark:text-white">
                     {title}
@@ -125,7 +145,7 @@ const BookingCard = ({ singleBooking }) => {
                   <h2 className="block mb-1 text-gray-600 font-medium">
                     Rating:
                   </h2>
-                  <div className="flex justify-between items-center">
+                  <div>
                     <div
                       onChange={e => setStar(e.target.value)}
                       className="rating mb-3 gap-x-1"
@@ -137,34 +157,51 @@ const BookingCard = ({ singleBooking }) => {
                         aria-label="1 star"
                         value="1"
                         defaultChecked
+                        onClick={() => setStarCount(1)}
                       />
                       <input
                         type="radio"
                         name="rating-2"
                         className="mask mask-star-2 bg-orange-400"
                         aria-label="2 star"
-                        value="1"
+                        value="2"
+                        onClick={() => setStarCount(1)}
                       />
                       <input
                         type="radio"
                         name="rating-2"
                         className="mask mask-star-2 bg-orange-400"
                         aria-label="3 star"
-                        value="1"
+                        value="3"
+                        onClick={() => setStarCount(1)}
                       />
                       <input
                         type="radio"
                         name="rating-2"
                         className="mask mask-star-2 bg-orange-400"
                         aria-label="4 star"
-                        value="1"
+                        value="4"
+                        onClick={() => setStarCount(1)}
                       />
                       <input
                         type="radio"
                         name="rating-2"
                         className="mask mask-star-2 bg-orange-400"
                         aria-label="5 star"
-                        value="1"
+                        value="5"
+                        onClick={() => setStarCount(1)}
+                      />
+                    </div>
+
+                    <div className="">
+                      <label className="block mb-1 text-gray-600 font-medium">
+                        Review
+                      </label>
+                      <textarea
+                        name="review"
+                        className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:border-amber-500"
+                        placeholder="Enter a description..."
+                        rows="4"
                       />
                     </div>
 

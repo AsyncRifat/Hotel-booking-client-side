@@ -16,7 +16,10 @@ const AddRoom = () => {
     const form = e.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-    const { photo1, photo2, ...allData } = data;
+    const { photo1, photo2, rating, ...allData } = data;
+
+    allData.rating = [parseInt(rating)];
+
     allData.photo = { photo1, photo2 };
 
     allData.amenities = allData.amenities.split(',').map(res => res.trim());

@@ -1,7 +1,10 @@
 import { FaBed, FaRulerCombined } from 'react-icons/fa6';
+import { useNavigate } from 'react-router';
 
 const SortingData = ({ sortAndLimit }) => {
-  const { title, price, roomSize, capacity, description, photo } = sortAndLimit;
+  const navigate = useNavigate();
+  const { title, price, roomSize, capacity, description, photo, _id } =
+    sortAndLimit;
 
   return (
     <div>
@@ -39,7 +42,10 @@ const SortingData = ({ sortAndLimit }) => {
                 per night
               </span>
             </p>
-            <button className="px-6 py-2 bg-blue-600 dark:bg-blue-600 border-5 border-gray-200 text-white rounded-full hover:bg-blue-700 transition text-sm font-medium">
+            <button
+              onClick={() => navigate(`/rooms/${_id}`)}
+              className="px-6 py-2 bg-blue-600 dark:bg-blue-600 border-5 border-gray-200 text-white rounded-full hover:bg-blue-700 transition text-sm font-medium"
+            >
               Book
             </button>
           </div>

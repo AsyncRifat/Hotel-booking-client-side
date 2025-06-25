@@ -33,16 +33,30 @@ const RoomDetails = () => {
     capacity,
   } = singleRoomDetails;
 
-  // console.log(_id);
-
   const [confirmOrder, setConfirmOrder] = useState(false);
+
+  // review section :
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [review, setReview] = useState([]);
+
+  const handleReview = id => {
+    axios
+      .get(`${import.meta.env.VITE_API_URL}/customer-review/${id}`)
+      .then(res => {
+        console.log(res?.data);
+        setReview(res?.data);
+        setIsModalOpen(true);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  };
 
   // for already booking check
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/orders?id=${_id}`)
       .then(res => res.json())
       .then(data => {
-        // console.log(data);
         setSameId(data);
       })
       .catch(err => {
@@ -56,8 +70,6 @@ const RoomDetails = () => {
   useEffect(() => {
     sameId.map(roomId => setRooId(roomId));
   }, [sameId]);
-
-  // console.log(rooId?.roomId);
 
   const [startedDate, setStatedDate] = useState('');
   const [endedDate, setEndedDate] = useState('');
@@ -133,12 +145,49 @@ const RoomDetails = () => {
               <p className="text-xl md:text-4xl font-bold mb-2 openSans">
                 {title}
               </p>
-              <div className="flex items-center gap-x-3 text-lg font-light ">
-                <p className="text-yellow-500">
+              <button
+                onClick={() => handleReview(_id)}
+                className="flex items-center gap-3 text-lg font-light "
+              >
+                See Review:
+                <span className="text-yellow-500">
                   <FaStar />
-                </p>
-                {rating}
-              </div>
+                </span>
+                {rating.length}
+              </button>
+
+              {isModalOpen && (
+                <div className="fixed inset-0 bg-black/15 bg-opacity-90 flex justify-center items-center z-50 p-5">
+                  <div className="bg-white rounded-lg shadow-lg p-6 w-[90%] max-w-xl relative">
+                    <button
+                      onClick={() => setIsModalOpen(false)}
+                      className="absolute top-1 right-3 text-gray-500 hover:text-red-500 text-xl"
+                    >
+                      ✕
+                    </button>
+                    <h2 className="text-2xl font-semibold mb-4">
+                      Customer Reviews
+                    </h2>
+
+                    {review.length > 0 ? (
+                      review.map((item, index) => (
+                        <div
+                          key={index}
+                          className="border-b border-gray-200 py-2 mb-2"
+                        >
+                          <p className="font-semibold">{item.name}</p>
+                          <p className="text-yellow-500 flex items-center gap-1">
+                            {item.star} <FaStar />
+                          </p>
+                          <p>{item.review}</p>
+                        </div>
+                      ))
+                    ) : (
+                      <p>No reviews found.</p>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
 
             <Link onClick={() => setConfirmOrder(true)}>
