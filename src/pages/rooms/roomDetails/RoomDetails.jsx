@@ -54,7 +54,7 @@ const RoomDetails = () => {
 
   // for already booking check
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/orders?id=${_id}`)
+    fetch(`${import.meta.env.VITE_API_URL}/details-room?id=${_id}`)
       .then(res => res.json())
       .then(data => {
         setSameId(data);
@@ -147,13 +147,13 @@ const RoomDetails = () => {
               </p>
               <button
                 onClick={() => handleReview(_id)}
-                className="flex items-center gap-3 text-lg font-light "
+                className=" badge badge-accent flex items-center gap-3 text-lg font-light cursor-pointer"
               >
-                See Review:
+                <span className="montserrat">See Review:</span>
                 <span className="text-yellow-500">
                   <FaStar />
                 </span>
-                {rating.length}
+                <span className='font-semibold'>{rating.length}</span>
               </button>
 
               {isModalOpen && (

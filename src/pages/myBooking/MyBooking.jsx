@@ -3,28 +3,28 @@ import useDocumentTitle from '../../hooks/useDocumentTitle';
 import { AuthContext } from '../../providers/AuthContext';
 import BookingCard from './myBookingCard/BookingCard';
 import EmptyPage from '../../components/emptyPage/EmptyPage';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const MyBooking = () => {
   useDocumentTitle('My Booking');
   const { user } = useContext(AuthContext);
   const [booking, setBooking] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`${import.meta.env.VITE_API_URL}/orders?email=${user?.email}`)
-        .then(res => res.json())
+      axiosSecure(`/orders?email=${user?.email}`)
         .then(data => {
           // console.log(data);
-          setBooking(data);
+          setBooking(data?.data);
         })
         .catch(err => {
           console.error(err);
         });
     }
-  }, [user]);
+  }, [user, axiosSecure]);
 
   if (booking.length < 1) return <EmptyPage />;
-
 
   return (
     <div>
