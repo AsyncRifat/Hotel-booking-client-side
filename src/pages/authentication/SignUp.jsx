@@ -22,7 +22,7 @@ const Register = () => {
     const { email, password, photo, name, terms } = Object.fromEntries(
       formData.entries()
     );
-    console.log(email, password, photo, name, terms);
+    // console.log(email, password, photo, name, terms);
 
     // reset
     setErrorMessage('');

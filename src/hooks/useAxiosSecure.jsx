@@ -10,7 +10,7 @@ const useAxiosSecure = () => {
   const { user, signOutUser } = useContext(AuthContext);
 
   const token = user?.accessToken;
-  console.log(token);
+  // console.log(token);
 
   // Add a request interceptor
   axiosInstance.interceptors.request.use(config => {

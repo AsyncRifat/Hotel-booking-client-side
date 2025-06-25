@@ -43,7 +43,7 @@ const RoomDetails = () => {
     axios
       .get(`${import.meta.env.VITE_API_URL}/customer-review/${id}`)
       .then(res => {
-        console.log(res?.data);
+        // console.log(res?.data);
         setReview(res?.data);
         setIsModalOpen(true);
       })
@@ -110,7 +110,7 @@ const RoomDetails = () => {
       photo: photo.photo1,
     };
 
-    console.log(orderData);
+    // console.log(orderData);
 
     axios
       .post(`${import.meta.env.VITE_API_URL}/order`, orderData)

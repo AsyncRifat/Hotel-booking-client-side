@@ -37,7 +37,7 @@ const UpdateRoom = () => {
     allData.amenities = allData.amenities.split(',').map(res => res.trim());
 
     // console.log(available);
-    console.log(allData);
+    // console.log(allData);
 
     // send Updated Coffee data to the db
     fetch(`${import.meta.env.VITE_API_URL}/update-room/${_id}`, {

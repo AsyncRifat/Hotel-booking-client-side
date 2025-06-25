@@ -16,7 +16,7 @@ const BookingCard = ({ singleBooking }) => {
 
   const [star, setStar] = useState('');
   const [starCount, setStarCount] = useState();
-  console.log(starCount);
+  // console.log(starCount);
 
   const handleReview = e => {
     e.preventDefault();
@@ -32,7 +32,7 @@ const BookingCard = ({ singleBooking }) => {
       star: reviewStar,
       review: review,
     };
-    console.log(reviewData);
+    // console.log(reviewData);
 
     axios
       .patch(`${import.meta.env.VITE_API_URL}/review/${id}`, {
