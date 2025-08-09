@@ -139,26 +139,29 @@ const RoomDetails = () => {
         {confirmOrder && (
           <div className="fixed inset-0 bg-black/5 backdrop-blur-xs z-10"></div>
         )}
-        <div className="relative md:col-span-8 border border-gray-300 dark:border-gray-600 rounded-2xl p-5">
+        <div className="relative md:col-span-8 border border-gray-300 dark:border-gray-600 rounded-2xl p-3 md:p-5">
           <div className="flex justify-between items-center">
             <div>
               <p className="text-xl md:text-4xl font-bold mb-2 openSans">
                 {title}
               </p>
+
               <button
                 onClick={() => handleReview(_id)}
-                className=" badge badge-accent flex items-center gap-3 text-lg font-light cursor-pointer"
+                className="flex items-center gap-2 rounded-full bg-white border border-gray-300 px-3 py-1.5 text-gray-700 shadow-sm transition-all duration-300 hover:border-blue-500 hover:bg-blue-50 hover:shadow-md active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-400"
               >
-                <span className="montserrat">See Review:</span>
-                <span className="text-yellow-500">
-                  <FaStar />
+                <span className="hidden sm:inline text-sm font-medium">
+                  See Review
                 </span>
-                <span className='font-semibold'>{rating.length}</span>
+                <span className="flex items-center gap-1 text-yellow-500">
+                  <FaStar className="text-base sm:text-lg" />
+                  <span className="text-sm font-semibold">{rating.length}</span>
+                </span>
               </button>
 
               {isModalOpen && (
-                <div className="fixed inset-0 bg-black/15 bg-opacity-90 flex justify-center items-center z-50 p-5">
-                  <div className="bg-white rounded-lg shadow-lg p-6 w-[90%] max-w-xl relative">
+                <div className="fixed inset-0 bg-black/40 backdrop-blur-xs bg-opacity-90 flex justify-center items-center z-50 p-5">
+                  <div className=" rounded-lg shadow-lg p-6 w-[90%] max-w-xl relative bg-[#f5fdfd] dark:bg-[#0f1919]">
                     <button
                       onClick={() => setIsModalOpen(false)}
                       className="absolute top-1 right-3 text-gray-500 hover:text-red-500 text-xl"
@@ -183,22 +186,25 @@ const RoomDetails = () => {
                         </div>
                       ))
                     ) : (
-                      <p>No reviews found.</p>
+                      <p>No reviews</p>
                     )}
                   </div>
                 </div>
               )}
             </div>
-
-            <Link onClick={() => setConfirmOrder(true)}>
-              <button className=" btn bg-blue-500 hover:bg-blue-600 duration-700 ease-in-out hover:scale-105 transition-all text-white">
-                Booking Now
-              </button>
-            </Link>
+            <button
+              className={` btn mt-8 md:mt-0 bg-blue-500 hover:bg-blue-600 duration-700 ease-in-out hover:scale-105 transition-all text-white ${
+                !available && 'cursor-not-allowed'
+              }`}
+              disabled={!user || !available}
+              onClick={() => setConfirmOrder(true)}
+            >
+              Booking Now
+            </button>
           </div>
 
           {confirmOrder && (
-            <div className="absolute top-10 right-0 md:w-[450px] bg-base-100 dark:bg-gray-800 border border-blue-300 dark:border-gray-600 shadow-xl rounded-xl p-5 z-20">
+            <div className="absolute top-10 right-0 w-auto md:w-[450px] bg-[#f5fdfd] dark:bg-[#0f1919] border border-blue-300 dark:border-gray-600 shadow-xl rounded-xl p-5 z-20">
               <div className="flex justify-between items-center mb-2">
                 <h2 className="text-lg font-bold text-gray-800 dark:text-white">
                   {title}
@@ -251,7 +257,7 @@ const RoomDetails = () => {
                   />
                 </div>
 
-                <div className="flex w-full gap-x-3">
+                <div className="flex flex-col md:flex-row w-full gap-x-3">
                   <div className="flex-1 mb-4 ">
                     <label
                       htmlFor="date"
@@ -299,14 +305,14 @@ const RoomDetails = () => {
                 <img
                   src={photo.photo1}
                   alt={title}
-                  className="h-[470px] w-full object-cover rounded-2xl"
+                  className="h-[270px] md:h-[470px] w-full object-cover rounded-2xl"
                 />
               </div>
               <div id="item2" className="carousel-item w-full">
                 <img
                   src={photo.photo2}
                   alt={title}
-                  className="h-[470px] w-full object-cover rounded-2xl"
+                  className="h-[270px] md:h-[470px] w-full object-cover rounded-2xl"
                 />
               </div>
             </div>
@@ -341,7 +347,7 @@ const RoomDetails = () => {
                     {amenities.map((Facilities, index) => (
                       <span
                         key={index}
-                        className="text-center mr-2 mb-2 font-light dark:bg-gray-600 text-sm badge badge-outline bg-gray-300"
+                        className="text-center mr-2 mb-2 font-light text-sm badge badge-soft"
                       >
                         {Facilities}
                       </span>
@@ -357,8 +363,12 @@ const RoomDetails = () => {
                 </p>
                 <p className=" gap-x-2 mb-6">
                   <span className=" text-gray-500 gap-1.5">Available: </span>
-                  <span className="uppercase font-semibold text-green-600">
-                    {available}
+                  <span
+                    className={`uppercase font-semibold text-green-600 ${
+                      available ? 'text-green-600' : 'text-red-400'
+                    }`}
+                  >
+                    {available ? 'Vacant' : 'Not Vacant'}
                   </span>
                 </p>
 

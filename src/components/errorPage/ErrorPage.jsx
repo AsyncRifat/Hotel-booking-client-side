@@ -23,7 +23,7 @@ const ErrorPage = () => {
           {`Data Not Found: ${location.pathname}`}
         </p>
 
-        <Link to="/rooms">
+        <Link to="/">
           <button className="btn py-2 text-center bg-[#0EA106] my-2 rounded-3xl  text-white ">
             Back Home
           </button>

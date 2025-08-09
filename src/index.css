@@ -10,7 +10,7 @@
     @apply transition-colors duration-400;
   }
   body {
-    @apply dark:bg-base-100 dark:text-gray-50;
+    @apply dark:bg-[#0d1515] dark:text-gray-50;
   }
 }
 

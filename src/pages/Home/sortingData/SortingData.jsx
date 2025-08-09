@@ -44,7 +44,7 @@ const SortingData = ({ sortAndLimit }) => {
             </p>
             <button
               onClick={() => navigate(`/rooms/${_id}`)}
-              className="px-6 py-2 bg-blue-600 dark:bg-blue-600 border-5 border-gray-200 text-white rounded-full hover:bg-blue-700 transition text-sm font-medium"
+              className="cursor-pointer px-6 py-2 bg-blue-600 dark:bg-blue-600 border-5 border-gray-200 text-white rounded-full hover:bg-blue-700 transition text-sm font-medium"
             >
               Book
             </button>

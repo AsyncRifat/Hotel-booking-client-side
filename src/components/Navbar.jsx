@@ -138,7 +138,7 @@ const Navbar = () => {
   );
   return (
     <div className="sticky top-0 z-40">
-      <div className="navbar relative z-10 bg-base-100 shadow-sm montserrat ">
+      <div className="navbar relative z-10 bg-[#f5fdfd] dark:bg-[#0d1515] shadow-xs montserrat px-[36px]">
         <div className="navbar-start">
           <div className="dropdown dropdown-hover">
             <div
@@ -155,13 +155,12 @@ const Navbar = () => {
               {link}
             </ul>
           </div>
-          <Link className=" flex items-end mx-1 md:mx-9" to="/">
+          <Link className=" mx-1 md:mx-6" to="/">
             <img
-              src="https://i.ibb.co/8LdhJmBm/icons8-booking-48.png"
+              src="https://i.ibb.co.com/MyHfjgLn/novous-logo-design.png"
               alt=""
-              className="w-9 h-9"
+              className="w-14 h-14 object-cover"
             />
-            <h2 className="font-extrabold text-xl text-green-600 ">Booking.</h2>
           </Link>
         </div>
 

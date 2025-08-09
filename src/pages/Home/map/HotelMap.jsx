@@ -11,9 +11,9 @@ const customIcon = new L.Icon({
 
 const DhakaLocation = () => {
   return (
-    <div className="min-h-[520px] flex flex-col items-center justify-center bg-gradient-to-r from-[#eff7f7] to-teal-50">
+    <div className="min-h-[520px] flex flex-col items-center justify-center bg-gradient-to-r from-[#eff7f7] to-teal-50 px-3 md:px-0">
       <motion.h1
-        className="text-4xl md:text-5xl font-bold mb-4 text-gray-800 openSans"
+        className="text-4xl md:text-5xl font-bold mb-4 text-gray-800 openSans text-center"
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}

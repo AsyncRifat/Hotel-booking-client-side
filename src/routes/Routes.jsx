@@ -48,11 +48,7 @@ export const router = createBrowserRouter([
         HydrateFallback: Loading,
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/rooms/${params.id}`),
-        element: (
-          <PrivateRoute>
-            <RoomDetails />
-          </PrivateRoute>
-        ),
+        element: <RoomDetails />,
       },
       {
         path: '/rooms/my-room',
