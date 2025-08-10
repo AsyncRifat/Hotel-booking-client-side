@@ -8,15 +8,16 @@ import Services from '../pages/Home/services/Services';
 import Footer from '../components/Footer';
 import ImageHoverGallery from '../components/ImageHoverGallery/ImageHoverGallery';
 import Accordion from '../components/FAQ/Accordion';
+import OfferPage from '../components/OfferPage/OfferPage';
 
 const MainLayouts = () => {
   const sortingData = useLoaderData();
   const navigate = useNavigate();
   return (
-    <div className="bg-teal-50 space-y-16 md:space-y-32">
+    <div className="bg-teal-50 space-y-16 md:space-y-48">
       <Banner />
 
-      <div>
+      <div className="-mt-16">
         <h1 className="text-5xl jost mt-14 mb-5 text-black text-center font-semibold px-3 md:px-0">
           Our Best Rooms
         </h1>
@@ -44,6 +45,9 @@ const MainLayouts = () => {
       {/* <Services /> */}
       <ServiceCountUp />
       <ImageHoverGallery />
+
+      <OfferPage />
+
       <Accordion />
       <HotelMap />
       <Footer />

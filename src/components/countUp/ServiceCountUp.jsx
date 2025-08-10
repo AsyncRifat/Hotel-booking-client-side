@@ -2,7 +2,7 @@ import CountUp from 'react-countup';
 
 const ServiceCountUp = () => {
   return (
-    <div className="py-10 px-4 md:px-16 bg-teal-50 dark:bg-gray-100">
+    <div className=" px-4 md:px-16 bg-teal-50 dark:bg-gray-100">
       <h1 className="text-5xl jost mt-14 mb-5 text-black text-center font-semibold">
         Trusted by Thousands of Happy Guests
       </h1>
