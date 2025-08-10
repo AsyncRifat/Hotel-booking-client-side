@@ -63,18 +63,6 @@ const Navbar = () => {
             >
               <li>
                 <NavLink
-                  to="/rooms/add-room"
-                  className={({ isActive }) =>
-                    ` py-1 px-2 mb-1${
-                      isActive ? 'bg-gray-50 dark:bg-gray-800 rounded-lg' : ''
-                    } `
-                  }
-                >
-                  Add Room
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
                   to="/rooms/my-room"
                   className={({ isActive }) =>
                     isActive

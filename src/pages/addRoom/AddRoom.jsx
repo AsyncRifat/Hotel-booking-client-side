@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import useDocumentTitle from '../../hooks/useDocumentTitle';
 import { AuthContext } from '../../providers/AuthContext';
+import { useParams } from 'react-router';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router';
@@ -8,6 +9,7 @@ import { useNavigate } from 'react-router';
 const AddRoom = () => {
   useDocumentTitle('Booking | Add Room');
   const { user } = useContext(AuthContext);
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const handleAddFrom = e => {
@@ -23,6 +25,8 @@ const AddRoom = () => {
     allData.photo = { photo1, photo2 };
 
     allData.amenities = allData.amenities.split(',').map(res => res.trim());
+
+    allData.hotelId = id;
 
     // save the data in database
     axios
@@ -220,6 +224,8 @@ const AddRoom = () => {
                 <input
                   type="text"
                   name="hr_name"
+                  value={user.displayName}
+                  readOnly
                   className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:border-amber-500 "
                   placeholder="HR Name"
                 />
@@ -231,6 +237,7 @@ const AddRoom = () => {
                 type="email"
                 value={user.email}
                 name="hr_email"
+                readOnly
                 className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:border-amber-500"
                 placeholder="HR email"
               />

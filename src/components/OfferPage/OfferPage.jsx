@@ -41,7 +41,7 @@ const hotels = [
 
 export default function OfferPage() {
   return (
-    <div className=" px-4  mx-11">
+    <div className=" px-4  md:mx-11">
       <header className="text-center mb-8">
         <h1 className="text-5xl jost mt-14 mb-5 text-black text-center font-semibold">
           Featured Hotel Offers

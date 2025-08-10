@@ -1,8 +1,8 @@
 import { useLoaderData } from 'react-router';
 import useDocumentTitle from '../../hooks/useDocumentTitle';
-import RoomCard from './roomCard/RoomCard';
+import HotelCard from './HotelCard/HotelCard';
 
-const Rooms = () => {
+const Hotels = () => {
   useDocumentTitle('Booking | Rooms');
 
   const initialRooms = useLoaderData();
@@ -21,7 +21,7 @@ const Rooms = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-15 mt-5 mb-10">
           {initialRooms.map(room => (
-            <RoomCard key={room._id} room={room} />
+            <HotelCard key={room._id} room={room} />
           ))}
         </div>
       </div>
@@ -29,4 +29,4 @@ const Rooms = () => {
   );
 };
 
-export default Rooms;
+export default Hotels;

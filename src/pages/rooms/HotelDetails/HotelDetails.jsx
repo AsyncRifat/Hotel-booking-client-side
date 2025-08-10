@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLoaderData, useNavigate } from 'react-router';
-import { MdDescription } from 'react-icons/md';
+import { MdDescription, MdOutlineAddHomeWork } from 'react-icons/md';
 import { IoLocationOutline } from 'react-icons/io5';
 import useDocumentTitle from '../../../hooks/useDocumentTitle';
 import { AiOutlineRollback } from 'react-icons/ai';
@@ -10,7 +10,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../../providers/AuthContext';
 
-const RoomDetails = () => {
+const HotelDetails = () => {
   useDocumentTitle('Room Details');
   const singleRoomDetails = useLoaderData();
   const navigate = useNavigate();
@@ -29,9 +29,8 @@ const RoomDetails = () => {
     rating,
     amenities,
     available,
-    // capacity,
   } = singleRoomDetails;
-  // console.log(singleRoomDetails);
+  // console.log(_id);
 
   const [confirmOrder, setConfirmOrder] = useState(false);
 
@@ -70,6 +69,22 @@ const RoomDetails = () => {
   useEffect(() => {
     sameId.map(roomId => setRooId(roomId));
   }, [sameId]);
+
+  // loading room
+  const [fetchRoom, setFetchRoom] = useState([]);
+
+  useEffect(() => {
+    if (user?.email) {
+      fetch(`${import.meta.env.VITE_API_URL}/hotel-matching-rooms/${_id}`)
+        .then(res => res.json())
+        .then(data => {
+          setFetchRoom(data);
+        })
+        .catch(err => {
+          console.error(err);
+        });
+    }
+  }, [user, _id]);
 
   const [startedDate, setStatedDate] = useState('');
   const [endedDate, setEndedDate] = useState('');
@@ -146,6 +161,7 @@ const RoomDetails = () => {
                 {hotelName}
               </p>
 
+              {/* review button */}
               <button
                 onClick={() => handleReview(_id)}
                 className="flex items-center gap-2 rounded-full bg-white border border-gray-300 px-3 py-1.5 text-gray-700 shadow-sm transition-all duration-300 hover:border-blue-500 hover:bg-blue-50 hover:shadow-md active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -193,7 +209,7 @@ const RoomDetails = () => {
                 </div>
               )}
             </div>
-            <button
+            {/* <button
               className={` btn mt-8 md:mt-0 bg-blue-500 hover:bg-blue-600 duration-700 ease-in-out hover:scale-105 transition-all text-white ${
                 !available && 'cursor-not-allowed'
               }`}
@@ -201,12 +217,12 @@ const RoomDetails = () => {
               onClick={() => setConfirmOrder(true)}
             >
               Booking Now
-            </button>
+            </button> */}
           </div>
 
           {/* booking modal */}
           {confirmOrder && (
-            <div className="absolute top-10 right-0 w-auto md:w-[450px] bg-[#f5fdfd] dark:bg-[#0f1919] border border-blue-300 dark:border-gray-600 shadow-xl rounded-xl p-5 z-20">
+            <div className="sticky top-10 right-0 md:-right-32 md:translate-x-11/12 w-auto md:w-[450px] bg-[#f5fdfd] dark:bg-[#0f1919] border border-blue-300 dark:border-gray-600 shadow-xl rounded-xl p-5 z-20">
               <div className="flex justify-between items-center mb-2">
                 <h2 className="text-lg font-bold text-gray-800 dark:text-white">
                   {hotelName}
@@ -415,10 +431,10 @@ const RoomDetails = () => {
               .toLowerCase()
               .replace(/\s+/g, '')
               .includes('gym'.toLowerCase().replace(/\s+/g, ''))
-          ) && (
+          ) ? (
             <div className="my-32 mb-24 px-3 grid grid-cols-9 gap-10">
               <img
-                src={photo.gym}
+                src={photo?.gym}
                 alt={'gym'}
                 className="col-span-5 h-[270px] md:h-[470px] w-full object-cover"
               />
@@ -427,11 +443,48 @@ const RoomDetails = () => {
                   GYM
                 </h2>
                 <p className="text-left text-gray-700 dark:text-gray-200 jost">
-                  {features?.GYM}
+                  {features?.GYM ||
+                    'Gym facility details are not available at the moment.'}
                 </p>
               </div>
             </div>
-          )}
+          ) : null}
+
+          <h2 className="text-3xl text-gray-700 dark:text-gray-200 jost pl-3.5 mb-5  font-extrabold">
+            Rooms
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mx-4">
+            {fetchRoom.length > 0 ? (
+              fetchRoom.map(roomCard => (
+                <div
+                  key={roomCard._id}
+                  className="max-w-sm rounded-xl overflow-hidden shadow-sm transition-all duration-300 bg-white"
+                >
+                  <img
+                    src={roomCard?.photo?.photo1}
+                    alt={roomCard?.title}
+                    className="w-full h-56 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+
+                  <h2 className="text-lg font-bold text-gray-800 my-4 ml-3">
+                    {roomCard?.title}
+                  </h2>
+                  <button
+                    className={` px-4 py-1 mb-3 ml-3 bg-blue-500 hover:bg-blue-600 duration-700 ease-in-out hover:scale-105 transition-all text-white rounded-md ${
+                      !available && 'cursor-not-allowed'
+                    }`}
+                    disabled={!user || !available}
+                    onClick={() => setConfirmOrder(true)}
+                  >
+                    Booking Now
+                  </button>
+                </div>
+              ))
+            ) : (
+              <p className="text-center text-gray-500">No room now</p>
+            )}
+          </div>
 
           {/* Overview */}
           <div className=" border my-5 mx-2.5 py-3 px-4 rounded-2xl dark:border-gray-600 border-gray-300">
@@ -527,16 +580,24 @@ const RoomDetails = () => {
             )}
           </div>
 
-          <Link
-            to="/rooms"
-            className=" btn border border-gray-500 bg-base-100 hover:bg-gray-200  dark:hover:bg-gray-200 hover:text-black ml-3 mt-3 montserrat"
-          >
-            Rooms <AiOutlineRollback size={25} />
-          </Link>
+          <div className="flex justify-between items-center px-3 mt-5">
+            <Link
+              to="/rooms"
+              className=" btn border border-gray-500 bg-base-100 hover:bg-gray-200  dark:hover:bg-gray-200 hover:text-black montserrat"
+            >
+              Rooms <AiOutlineRollback size={25} />
+            </Link>
+            <Link
+              to={`/rooms/add-room/${_id}`}
+              className=" btn border border-gray-500 bg-base-100 hover:bg-gray-200  dark:hover:bg-gray-200 hover:text-black  montserrat"
+            >
+              Add Rooms <MdOutlineAddHomeWork size={25} />
+            </Link>
+          </div>
         </div>
       </div>
     </>
   );
 };
 
-export default RoomDetails;
+export default HotelDetails;

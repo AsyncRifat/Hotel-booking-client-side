@@ -11,7 +11,7 @@ import logo6 from '../../assets/Partners/trip.png';
 const Partners = () => {
   const logos = [logo1, logo2, logo3, logo4, logo5, logo6, logo7];
   return (
-    <div className="mx-15 pb-10">
+    <div className="mx-4 md:mx-15 pb-10">
       <div className="text-center mb-20">
         <h1 className="text-5xl jost mt-14 mb-5 text-black text-center font-semibold px-3 md:px-0">
           Trusted Hotel Partners Around the World

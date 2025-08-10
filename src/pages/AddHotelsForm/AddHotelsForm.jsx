@@ -164,6 +164,7 @@ const AddHotelsForm = () => {
             name="hr_name"
             placeholder="HR Name"
             value={user.displayName}
+            readOnly
             onChange={handleChange}
             className="input input-bordered w-full"
           />
@@ -172,6 +173,7 @@ const AddHotelsForm = () => {
             name="hr_email"
             placeholder="HR Email"
             value={user.email}
+            readOnly
             onChange={handleChange}
             className="input input-bordered w-full"
           />
@@ -221,7 +223,7 @@ const AddHotelsForm = () => {
           <label className="font-semibold block mb-2">Features</label>
           <textarea
             type="text"
-            placeholder="A World of Spa"
+            placeholder="Spa"
             value={formData.features.spa}
             onChange={e =>
               setFormData(prev => ({

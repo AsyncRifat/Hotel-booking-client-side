@@ -1,7 +1,7 @@
 import { MdOutlineStar } from 'react-icons/md';
 import { Link } from 'react-router';
 
-const RoomCard = ({ room }) => {
+const HotelCard = ({ room }) => {
   const { hotelName, rating, location, available, _id } = room;
   // console.log(available);
 
@@ -72,4 +72,4 @@ const RoomCard = ({ room }) => {
   );
 };
 
-export default RoomCard;
+export default HotelCard;

@@ -4,17 +4,17 @@ import AuthLayout from '../layout/AuthLayout';
 import SignIn from '../pages/authentication/SignIn';
 import SignUp from '../pages/authentication/SignUp';
 import MainAuthLayout from '../layout/MainAuthLayout';
-import Rooms from '../pages/rooms/Rooms';
 import AddRoom from '../pages/addRoom/AddRoom';
 import PrivateRoute from '../providers/PrivateRoute';
 import MyBooking from '../pages/myBooking/MyBooking';
 import MyBookingLayouts from '../layout/MyBookingLayouts';
 import Loading from '../components/loader/Loading';
-import RoomDetails from '../pages/rooms/roomDetails/RoomDetails';
+import HotelDetails from '../pages/rooms/HotelDetails/HotelDetails';
 import ErrorPage from '../components/errorPage/ErrorPage';
 import MyRoom from '../pages/myRooms/MyRoom';
 import UpdateRoom from '../pages/updateRoom/UpdateRoom';
 import AddHotelsForm from '../pages/AddHotelsForm/AddHotelsForm';
+import Hotels from '../pages/rooms/Hotels';
 
 export const router = createBrowserRouter([
   {
@@ -22,7 +22,7 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     HydrateFallback: Loading,
     loader: () =>
-      fetch(`${import.meta.env.VITE_API_URL}/rooms?sort=rating&limit=6`),
+      fetch(`${import.meta.env.VITE_API_URL}/hotels?sort=rating&limit=6`),
     element: <MainLayouts />,
   },
   {
@@ -33,11 +33,11 @@ export const router = createBrowserRouter([
       {
         index: true,
         HydrateFallback: Loading,
-        loader: () => fetch(`${import.meta.env.VITE_API_URL}/rooms`),
-        element: <Rooms />,
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/hotels`),
+        element: <Hotels />,
       },
       {
-        path: '/rooms/add-room',
+        path: '/rooms/add-room/:id',
         element: (
           <PrivateRoute>
             <AddRoom />
@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
         HydrateFallback: Loading,
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/rooms/${params.id}`),
-        element: <RoomDetails />,
+        element: <HotelDetails />,
       },
       {
         path: '/rooms/my-room',

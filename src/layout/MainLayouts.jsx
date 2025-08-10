@@ -15,10 +15,10 @@ const MainLayouts = () => {
   const sortingData = useLoaderData();
   const navigate = useNavigate();
   return (
-    <div className="bg-teal-50 space-y-16 md:space-y-48">
+    <div className="bg-teal-50 space-y-20 md:space-y-48">
       <Banner />
 
-      <div className="-mt-16">
+      <div className="md:-mt-16">
         <h1 className="text-5xl jost mt-14 mb-5 text-black text-center font-semibold px-3 md:px-0">
           Our Best Rooms
         </h1>
@@ -46,11 +46,8 @@ const MainLayouts = () => {
       {/* <Services /> */}
       <ServiceCountUp />
       <OfferPage />
-
       <ImageHoverGallery />
-
       <Partners />
-
       <Accordion />
       <HotelMap />
       <Footer />
