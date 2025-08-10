@@ -9,6 +9,7 @@ import Footer from '../components/Footer';
 import ImageHoverGallery from '../components/ImageHoverGallery/ImageHoverGallery';
 import Accordion from '../components/FAQ/Accordion';
 import OfferPage from '../components/OfferPage/OfferPage';
+import Partners from '../components/Partners/Partners';
 
 const MainLayouts = () => {
   const sortingData = useLoaderData();
@@ -47,6 +48,8 @@ const MainLayouts = () => {
       <OfferPage />
 
       <ImageHoverGallery />
+
+      <Partners />
 
       <Accordion />
       <HotelMap />
