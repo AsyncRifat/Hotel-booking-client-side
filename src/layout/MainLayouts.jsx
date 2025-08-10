@@ -44,9 +44,9 @@ const MainLayouts = () => {
 
       {/* <Services /> */}
       <ServiceCountUp />
-      <ImageHoverGallery />
-
       <OfferPage />
+
+      <ImageHoverGallery />
 
       <Accordion />
       <HotelMap />

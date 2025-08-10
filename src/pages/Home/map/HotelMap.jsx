@@ -11,33 +11,35 @@ const customIcon = new L.Icon({
 
 const DhakaLocation = () => {
   return (
-    <div className="min-h-[520px] flex flex-col items-center justify-center bg-gradient-to-r from-[#eff7f7] to-teal-50 px-3 md:px-0">
-      <motion.h1
-        className="text-4xl md:text-5xl font-bold mb-4 text-gray-800 openSans text-center"
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        📍 Our Hotel Location
-      </motion.h1>
+    <div className="min-h-[400px]  grid grid-cols-1 md:grid-cols-9 px-3 md:px-16 gap-16">
+      <div className="md:col-span-4 place-content-center">
+        <motion.h1
+          className="text-5xl jost mt-14 mb-5 text-black text-center font-semibold px-3 md:px-0"
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          📍 Our Hotel Location
+        </motion.h1>
 
-      <motion.p
-        className="text-gray-600 mb-6 text-lg text-center max-w-xl montserrat"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.8 }}
-      >
-        Visit us in the heart of{' '}
-        <span className="font-semibold text-amber-700">Dhaka</span>, Bangladesh.
-        Book now for the best experience!
-      </motion.p>
+        <motion.p
+          className="text-gray-500 text-center jost px-3 md:px-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+        >
+          Visit us in the heart of{' '}
+          <span className="font-semibold text-amber-700">Dhaka</span>,
+          Bangladesh. Book now for the best experience!
+        </motion.p>
+      </div>
 
-      <div className="w-full max-w-4xl rounded-2xl overflow-hidden shadow-xl border-4 border-gray-300">
+      <div className=" md:col-span-5 md:ml-20 rounded-2xl overflow-hidden shadow-lg border-2 border-gray-300">
         <MapContainer
           center={[23.7496, 90.3941]}
           zoom={14}
           scrollWheelZoom={false}
-          style={{ height: '300px', width: '100%' }}
+          style={{ height: '400px', width: '100%' }}
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
