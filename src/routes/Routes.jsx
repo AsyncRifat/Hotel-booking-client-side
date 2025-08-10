@@ -14,6 +14,7 @@ import RoomDetails from '../pages/rooms/roomDetails/RoomDetails';
 import ErrorPage from '../components/errorPage/ErrorPage';
 import MyRoom from '../pages/myRooms/MyRoom';
 import UpdateRoom from '../pages/updateRoom/UpdateRoom';
+import AddHotelsForm from '../pages/AddHotelsForm/AddHotelsForm';
 
 export const router = createBrowserRouter([
   {
@@ -66,6 +67,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <UpdateRoom />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/rooms/hotels-add-form',
+        element: (
+          <PrivateRoute>
+            <AddHotelsForm />
           </PrivateRoute>
         ),
       },

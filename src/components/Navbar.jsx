@@ -85,6 +85,18 @@ const Navbar = () => {
                   My Room
                 </NavLink>
               </li>
+              <li>
+                <NavLink
+                  to="/rooms/hotels-add-form"
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'bg-gray-100 dark:bg-gray-800 rounded-lg py-1 px-2 '
+                      : ' py-1 px-2'
+                  }
+                >
+                  Add Hotels
+                </NavLink>
+              </li>
             </ul>
           </div>
 

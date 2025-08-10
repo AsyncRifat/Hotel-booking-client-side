@@ -17,35 +17,21 @@ const RoomDetails = () => {
   const { user } = useContext(AuthContext);
 
   const {
-    title,
+    hotelName,
     _id,
     description,
     hr_name,
     hr_email,
     location,
     photo,
-    // bedType,
-    // roomSize,
+    features,
     price,
     rating,
     amenities,
     available,
     // capacity,
   } = singleRoomDetails;
-  // console.log(amenities);
-
-  if (
-    amenities.some(item =>
-      item
-        .toLowerCase()
-        .replace(/\s+/g, '')
-        .includes('TVc'.toLowerCase().replace(/\s+/g, ''))
-    )
-  ) {
-    console.log('Yes');
-  } else {
-    console.log('No');
-  }
+  // console.log(singleRoomDetails);
 
   const [confirmOrder, setConfirmOrder] = useState(false);
 
@@ -114,7 +100,7 @@ const RoomDetails = () => {
 
     const orderData = {
       roomId: _id,
-      title,
+      hotelName,
       description,
       price,
       name: name,
@@ -157,7 +143,7 @@ const RoomDetails = () => {
           <div className="flex justify-between items-center">
             <div>
               <p className="text-xl md:text-4xl font-bold mb-2 openSans">
-                {title}
+                {hotelName}
               </p>
 
               <button
@@ -223,7 +209,7 @@ const RoomDetails = () => {
             <div className="absolute top-10 right-0 w-auto md:w-[450px] bg-[#f5fdfd] dark:bg-[#0f1919] border border-blue-300 dark:border-gray-600 shadow-xl rounded-xl p-5 z-20">
               <div className="flex justify-between items-center mb-2">
                 <h2 className="text-lg font-bold text-gray-800 dark:text-white">
-                  {title}
+                  {hotelName}
                 </h2>
                 <button
                   onClick={() => setConfirmOrder(false)}
@@ -236,7 +222,7 @@ const RoomDetails = () => {
                 {description}
               </p>
               <img
-                src={photo.photo1}
+                src={photo.banner}
                 alt=""
                 className="w-full h-[200px] object-cover rounded-xl my-4"
               />
@@ -320,22 +306,22 @@ const RoomDetails = () => {
             <div className="carousel w-full">
               <div id="item1" className="carousel-item w-full">
                 <img
-                  src={photo.photo1}
-                  alt={title}
+                  src={photo.banner}
+                  alt={'banner'}
                   className="h-[270px] md:h-[470px] w-full object-cover rounded-2xl"
                 />
               </div>
               <div id="item2" className="carousel-item w-full">
                 <img
-                  src={photo.photo2}
-                  alt={title}
+                  src={photo.indoor}
+                  alt={'indoor'}
                   className="h-[270px] md:h-[470px] w-full object-cover rounded-2xl"
                 />
               </div>
               <div id="item3" className="carousel-item w-full">
                 <img
-                  src={photo.photo4}
-                  alt={title}
+                  src={photo.outdoor}
+                  alt={'outdoor'}
                   className="h-[270px] md:h-[470px] w-full object-cover rounded-2xl"
                 />
               </div>
@@ -370,18 +356,14 @@ const RoomDetails = () => {
           ) && (
             <div className="mt-10 px-3">
               <div className="text-center">
-                <h2 className="text-5xl mb-3 jost font-extrabold">
-                  A World of Spa
-                </h2>
-                <p className="text-gray-700 dark:text-gray-200 jost mx-24 mb-12">
-                  Nestled within the heart of our hotel, our spa is a sanctuary
-                  of relaxation and rejuvenation, dedicated to enhancing your
-                  well-being and restoring your inner balance.
+                <h2 className="text-5xl mb-3 jost font-extrabold">Spa</h2>
+                <p className="text-gray-700 dark:text-gray-200 jost mx-2 md:mx-24 mb-12">
+                  {features?.spa}
                 </p>
               </div>
               <img
-                src={photo.photo5}
-                alt={title}
+                src={photo.spa}
+                alt={'spa'}
                 className=" h-[270px] md:h-[370px] w-full object-cover"
               />
             </div>
@@ -394,20 +376,18 @@ const RoomDetails = () => {
               .replace(/\s+/g, '')
               .includes('Shuttle'.toLowerCase().replace(/\s+/g, ''))
           ) && (
-            <div className="mt-32 px-3 grid grid-cols-9 gap-10">
+            <div className="mt-32 px-3 grid md:grid-cols-9 gap-10">
               <div className=" col-span-4 place-content-center text-center">
                 <h2 className="text-4xl mb-5 jost font-extrabold tracking-widest">
                   Relax
                 </h2>
-                <p className="text-left text-gray-700 dark:text-gray-200 jost">
-                  Unwind in serene comfort with our spa, heated pools, and cozy
-                  lounges. Experience pure tranquility surrounded by
-                  breathtaking winter landscapes.
+                <p className="md:text-left text-gray-700 dark:text-gray-200 jost">
+                  {features.relax}
                 </p>
               </div>
               <img
-                src={photo.photo3}
-                alt={title}
+                src={photo.relax}
+                alt={'relax'}
                 className="col-span-5 h-[270px] md:h-[470px] w-full object-cover"
               />
             </div>
@@ -420,19 +400,41 @@ const RoomDetails = () => {
               .replace(/\s+/g, '')
               .includes('Restaurant'.toLowerCase().replace(/\s+/g, ''))
           ) && (
-            <div className="mt-32 mb-24 px-3 grid grid-cols-9 gap-10">
+            <div className="mt-32 mb-24 px-3 grid md:grid-cols-9 gap-10">
               <img
-                src={photo.photo6}
-                alt={title}
+                src={photo.restaurant}
+                alt={'restaurant'}
                 className="col-span-5 h-[270px] md:h-[470px] w-full object-cover"
               />
               <div className=" col-span-4 place-content-center text-center">
                 <h2 className="text-4xl mb-5 jost font-extrabold tracking-widest">
                   Restaurant
                 </h2>
+                <p className="md:text-left text-gray-700 dark:text-gray-200 jost">
+                  {features?.restaurant}
+                </p>
+              </div>
+            </div>
+          )}
+
+          {amenities.some(item =>
+            item
+              .toLowerCase()
+              .replace(/\s+/g, '')
+              .includes('gym'.toLowerCase().replace(/\s+/g, ''))
+          ) && (
+            <div className="mt-32 mb-24 px-3 grid grid-cols-9 gap-10">
+              <img
+                src={photo.gym}
+                alt={'gym'}
+                className="col-span-5 h-[270px] md:h-[470px] w-full object-cover"
+              />
+              <div className=" col-span-4 place-content-center text-center">
+                <h2 className="text-4xl mb-5 jost font-extrabold tracking-widest">
+                  GYM
+                </h2>
                 <p className="text-left text-gray-700 dark:text-gray-200 jost">
-                  Executive Chef, showcases their expertise and passion for fine
-                  dining by using the finest, locally sourced ingredients
+                  {features?.GYM}
                 </p>
               </div>
             </div>

@@ -44,17 +44,21 @@ const MyPostedRoomCard = ({ postedRoom }) => {
 
   if (!myPostedRoom) return null;
 
-  const { title, price, photo, location, rating, _id } = myPostedRoom;
+  const { hotelName, photo, location, rating, _id } = myPostedRoom;
 
   return (
     <>
       <div className="card bg-base-100 dark:bg-gray-800 w-96 shadow-sm">
         <figure>
-          <img src={photo?.photo1} alt={title} className="w-full h-[250px]" />
+          <img
+            src={photo?.banner}
+            alt={hotelName}
+            className="w-full h-[250px]"
+          />
         </figure>
         <div className="card-body">
           <h2 className="card-title">
-            {title}
+            {hotelName}
             <p className="flex justify-center items-center gap-2 openSans">
               <FaStar size={22} className="text-yellow-400" />
               {rating}
@@ -62,10 +66,9 @@ const MyPostedRoomCard = ({ postedRoom }) => {
           </h2>
           <div className="flex justify-between">
             <p>
-              <span className="font-medium text-base openSans">Price:</span>{' '}
-              <span className="text-gray-500">$</span>
-              <span className="font-medium text-amber-600">{price}</span>{' '}
-              <span className="font-thin text-xs">Per Night</span>
+              <span className="font-medium text-base openSans">Rooms:</span>{' '}
+              <span className="text-gray-500"></span>
+              <span className="font-medium text-amber-600">17</span>{' '}
             </p>
             <p className="flex items-center gap-1.5 text-sm">
               <IoLocationOutline size={20} />
