@@ -338,14 +338,6 @@ const RoomDetails = () => {
               </a>
             </div>
           </div>
-          {/*  {amenities.some(item =>
-            item
-              .toLowerCase()
-              .replace(/\s+/g, '')
-              .includes('relax'.toLowerCase().replace(/\s+/g, ''))
-          ) && (
-            
-          )} */}
 
           {/* spa */}
           {amenities.some(item =>
@@ -354,7 +346,7 @@ const RoomDetails = () => {
               .replace(/\s+/g, '')
               .includes('spa'.toLowerCase().replace(/\s+/g, ''))
           ) && (
-            <div className="mt-10 px-3">
+            <div className="mt-32 px-3">
               <div className="text-center">
                 <h2 className="text-5xl mb-3 jost font-extrabold">Spa</h2>
                 <p className="text-gray-700 dark:text-gray-200 jost mx-2 md:mx-24 mb-12">
@@ -417,13 +409,14 @@ const RoomDetails = () => {
             </div>
           )}
 
+          {/* gym */}
           {amenities.some(item =>
             item
               .toLowerCase()
               .replace(/\s+/g, '')
               .includes('gym'.toLowerCase().replace(/\s+/g, ''))
           ) && (
-            <div className="mt-32 mb-24 px-3 grid grid-cols-9 gap-10">
+            <div className="my-32 mb-24 px-3 grid grid-cols-9 gap-10">
               <img
                 src={photo.gym}
                 alt={'gym'}

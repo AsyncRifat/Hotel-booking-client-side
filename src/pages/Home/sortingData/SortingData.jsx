@@ -3,14 +3,13 @@ import { useNavigate } from 'react-router';
 
 const SortingData = ({ sortAndLimit }) => {
   const navigate = useNavigate();
-  const { title, price, roomSize, capacity, description, photo, _id } =
-    sortAndLimit;
+  const { title, description, photo, _id } = sortAndLimit;
 
   return (
     <div>
-      <div className="bg-white rounded-2xl shadow-md overflow-hidden w-full max-w-[440px] h-full max-h-[440px] transition hover:shadow-lg my-5 mx-auto ">
+      <div className="bg-white shadow-md overflow-hidden w-full max-w-[440px] h-full max-h-[440px] transition hover:shadow-lg my-5 mx-auto ">
         <img
-          src={photo.photo1}
+          src={photo.banner}
           alt={title}
           className="w-full h-56 object-cover"
         />
@@ -19,11 +18,11 @@ const SortingData = ({ sortAndLimit }) => {
           <div className="flex justify-between items-center gap-4 bg-blue-50 px-4 py-2 rounded-xl mb-4">
             <div className="flex items-center gap-1 text-sm text-gray-700">
               <FaBed className="text-lg text-blue-500" />
-              <span>Adults: {capacity}</span>
+              <span>Adults: 7</span>
             </div>
             <div className="flex items-center gap-1 text-sm text-gray-700">
               <FaRulerCombined className="text-lg text-blue-500" />
-              <span>Size: {roomSize}ft²</span>
+              <span>Size: 327 ft²</span>
             </div>
           </div>
 
@@ -37,7 +36,7 @@ const SortingData = ({ sortAndLimit }) => {
 
           <div className="flex justify-between items-center">
             <p className="text-green-600 font-bold text-lg">
-              ${price}{' '}
+              $2367{' '}
               <span className="text-gray-500 font-normal text-sm">
                 per night
               </span>

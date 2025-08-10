@@ -6,38 +6,45 @@ import SortingData from '../pages/Home/sortingData/SortingData';
 import { useLoaderData, useNavigate } from 'react-router';
 import Services from '../pages/Home/services/Services';
 import Footer from '../components/Footer';
+import ImageHoverGallery from '../components/ImageHoverGallery/ImageHoverGallery';
+import Accordion from '../components/FAQ/Accordion';
 
 const MainLayouts = () => {
   const sortingData = useLoaderData();
   const navigate = useNavigate();
   return (
-    <div className="bg-teal-50">
+    <div className="bg-teal-50 space-y-16 md:space-y-32">
       <Banner />
 
-      <h1 className="text-5xl jost mt-14 mb-5 text-black text-center font-semibold px-3 md:px-0">
-        Our Best Rooms
-      </h1>
-      <p className="text-gray-500 text-center jost px-3 md:px-0">
-        Experience comfort and elegance like never before - your perfect stay
-        begins here.Wake up to breathtaking <br /> views, exceptional service,
-        and unforgettable memories.
-      </p>
-      <div className="max-w-screen-xl mx-auto mt-12 mb-14 ">
-        <button
-          onClick={() => navigate('/rooms')}
-          className="cursor-pointer bg-blue-600 dark:bg-blue-600 text-white px-7 py-3 rounded-4xl border-6 border-gray-200 block mx-auto jost"
-        >
-          All Hotel&apos;s
-        </button>
+      <div>
+        <h1 className="text-5xl jost mt-14 mb-5 text-black text-center font-semibold px-3 md:px-0">
+          Our Best Rooms
+        </h1>
+        <p className="text-gray-500 text-center jost px-3 md:px-0">
+          Experience comfort and elegance like never before - your perfect stay
+          begins here.Wake up to breathtaking <br /> views, exceptional service,
+          and unforgettable memories.
+        </p>
+        <div className="max-w-screen-xl mx-auto my-12  ">
+          <button
+            onClick={() => navigate('/rooms')}
+            className="cursor-pointer bg-blue-600 dark:bg-blue-600 text-white px-7 py-3 rounded-4xl border-6 border-gray-200 block mx-auto jost"
+          >
+            All Hotel&apos;s
+          </button>
+        </div>
+
+        <div className="mx-auto grid grid-cols-1 md:grid-cols-3 px-4 md:px-15 gap-5 md:gap-x-15">
+          {sortingData.map(sortAndLimit => (
+            <SortingData key={sortAndLimit._id} sortAndLimit={sortAndLimit} />
+          ))}
+        </div>
       </div>
 
-      <div className="mx-auto grid grid-cols-1 md:grid-cols-3 px-4 gap-x-3">
-        {sortingData.map(sortAndLimit => (
-          <SortingData key={sortAndLimit._id} sortAndLimit={sortAndLimit} />
-        ))}
-      </div>
-      <Services />
+      {/* <Services /> */}
       <ServiceCountUp />
+      <ImageHoverGallery />
+      <Accordion />
       <HotelMap />
       <Footer />
     </div>

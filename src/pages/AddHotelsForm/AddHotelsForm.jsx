@@ -125,6 +125,7 @@ const AddHotelsForm = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
             {[
               'Ski',
+              'AC',
               'TV',
               'Wi-Fi',
               'Mini Bar',
