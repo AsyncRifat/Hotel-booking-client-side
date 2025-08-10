@@ -20,17 +20,19 @@ const Navbar = () => {
   };
   const link = (
     <>
+      {/* <NavLink>Hello</NavLink> */}
       <NavLink
         to="/"
-        className="p-2 py-1 mr-2 active:bg-gray-200 active:rounded-lg"
+        className="relative p-2 py-1 mr-2 active:bg-gray-200 active:rounded-lg 
+          after:absolute after:left-2 after:bottom-0 after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 hover:after:w-2/3"
       >
         Home
       </NavLink>
       <NavLink
         to="/rooms"
-        className="py-1 px-2 mr-1.5 active:text-green-600 active:bg-gray-100 active:rounded-lg active:dark:bg-gray-700"
+        className="relative py-1 px-2 mr-1.5 active:text-green-600 active:bg-gray-100 active:rounded-lg active:dark:bg-gray-700 after:absolute after:left-2 after:bottom-0 after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 hover:after:w-2/3"
       >
-        Room's
+        Hotel&apos;s
       </NavLink>
 
       {user ? (
@@ -38,9 +40,9 @@ const Navbar = () => {
           <NavLink
             to="/my-booking"
             className={({ isActive }) =>
-              isActive
-                ? 'bg-gray-50 dark:bg-gray-800 rounded-lg py-1 px-2 '
-                : ' py-1 px-2'
+              `relative py-1 px-2 ${
+                isActive ? 'bg-gray-50 dark:bg-gray-800 rounded-lg' : ''
+              } after:absolute after:left-2 after:bottom-0 after:h-[2px] after:w-0 after:bg-blue-500 after:transition-all after:duration-300 hover:after:w-2/3`
             }
           >
             My Booking
@@ -63,9 +65,9 @@ const Navbar = () => {
                 <NavLink
                   to="/rooms/add-room"
                   className={({ isActive }) =>
-                    isActive
-                      ? 'bg-gray-100 dark:bg-gray-800 rounded-lg py-1 px-2 mb-1'
-                      : ' py-1 px-2 mb-1'
+                    ` py-1 px-2 mb-1${
+                      isActive ? 'bg-gray-50 dark:bg-gray-800 rounded-lg' : ''
+                    } `
                   }
                 >
                   Add Room

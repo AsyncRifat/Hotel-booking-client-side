@@ -7,16 +7,16 @@ const RoomCard = ({ room }) => {
 
   return (
     <>
-      <div className="group relative rounded-lg overflow-hidden shadow-xs transition-all duration-500 hover:scale-100 h-[400px] bg-[#f5fdfd] dark:bg-[#0f1919]">
+      <div className="group relative rounded-lg overflow-hidden shadow-xs transition-all duration-500 hover:scale-100 h-[360px] bg-[#f5fdfd] dark:bg-[#0f1919]">
         <img
           src={room?.photo?.photo1}
           alt={title}
-          className="w-full h-60 object-cover"
+          className="w-full h-56 object-cover"
         />
 
-        <div className="text-xl font-semibold text-center text-gray-800 dark:text-white absolute inset-x-10 bottom-37 bg-[#f5fdfd] dark:bg-[#0f1919] rounded-t-3xl px-2 translate-y-full group-hover:translate-y-10 transition-all duration-500">
+        <div className="text-xl font-semibold text-center text-gray-800 dark:text-white absolute inset-x-6 bottom-33 bg-[#f5fdfd] dark:bg-[#0f1919] rounded-t-3xl px-2 translate-y-full group-hover:translate-y-15 transition-all duration-500">
           <p className="montserrat mt-2 mb-1.5">{title}</p>
-          <div className="flex justify-between items-center text-base mb-3">
+          <div className="flex justify-between items-center text-base mb-3 md:px-2">
             <div className={`font-medium text-sm uppercase`}>
               {available ? (
                 <div className="space-x-3 flex items-center justify-center">
@@ -24,7 +24,6 @@ const RoomCard = ({ room }) => {
                     <div className="status status-success animate-ping"></div>
                     <div className="status status-success"></div>
                   </div>
-                  {'  '}
                   <span>Vacant</span>
                 </div>
               ) : (
@@ -33,7 +32,6 @@ const RoomCard = ({ room }) => {
                     <div className="status status-error animate-ping"></div>
                     <div className="status status-error"></div>
                   </div>
-                  {'  '}
                   <span>No Vacant</span>
                 </div>
               )}
@@ -49,8 +47,8 @@ const RoomCard = ({ room }) => {
           </div>
         </div>
 
-        <div className="absolute inset-x-10 bottom-0 bg-[#f5fdfd] dark:bg-[#0f1919] rounded-t-3xl p-4 translate-y-full group-hover:-translate-y-5 transition-all duration-400">
-          <div className="flex justify-center mt-3">
+        <div className="hidden lg:block absolute inset-x-10 bottom-0 bg-[#f5fdfd] dark:bg-[#0f1919] rounded-t-3xl translate-y-full group-hover:-translate-y-2 transition-all duration-400">
+          <div className="flex justify-center mb-2">
             <Link
               to={`/rooms/${_id}`}
               className="px-6 py-2 bg-blue-600 dark:bg-blue-600 border-5 border-gray-200 dark:border-gray-800 text-white rounded-full hover:bg-blue-700 transition text-sm font-medium hover:cursor-pointer"

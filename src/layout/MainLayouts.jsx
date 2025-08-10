@@ -27,7 +27,7 @@ const MainLayouts = () => {
           onClick={() => navigate('/rooms')}
           className="cursor-pointer bg-blue-600 dark:bg-blue-600 text-white px-7 py-3 rounded-4xl border-6 border-gray-200 block mx-auto jost"
         >
-          All rooms
+          All Hotel&apos;s
         </button>
       </div>
 

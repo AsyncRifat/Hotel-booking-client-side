@@ -229,7 +229,7 @@ const AddRoom = () => {
               <label className="label">HR email</label>
               <input
                 type="email"
-                defaultValue={user.email}
+                value={user.email}
                 name="hr_email"
                 className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring focus:border-amber-500"
                 placeholder="HR email"

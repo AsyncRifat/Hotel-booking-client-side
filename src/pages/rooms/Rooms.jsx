@@ -1,8 +1,6 @@
 import { useLoaderData } from 'react-router';
 import useDocumentTitle from '../../hooks/useDocumentTitle';
 import RoomCard from './roomCard/RoomCard';
-import Footer from '../../components/Footer';
-// import { useState } from 'react';
 
 const Rooms = () => {
   useDocumentTitle('Booking | Rooms');
@@ -21,13 +19,12 @@ const Rooms = () => {
           and unforgettable memories.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-5 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-15 mt-5 mb-10">
           {initialRooms.map(room => (
             <RoomCard key={room._id} room={room} />
           ))}
         </div>
       </div>
-      {/* <Footer /> */}
     </div>
   );
 };

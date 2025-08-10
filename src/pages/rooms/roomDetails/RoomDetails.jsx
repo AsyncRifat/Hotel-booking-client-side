@@ -24,14 +24,28 @@ const RoomDetails = () => {
     hr_email,
     location,
     photo,
-    bedType,
-    roomSize,
+    // bedType,
+    // roomSize,
     price,
     rating,
     amenities,
     available,
-    capacity,
+    // capacity,
   } = singleRoomDetails;
+  // console.log(amenities);
+
+  if (
+    amenities.some(item =>
+      item
+        .toLowerCase()
+        .replace(/\s+/g, '')
+        .includes('TVc'.toLowerCase().replace(/\s+/g, ''))
+    )
+  ) {
+    console.log('Yes');
+  } else {
+    console.log('No');
+  }
 
   const [confirmOrder, setConfirmOrder] = useState(false);
 
@@ -159,6 +173,7 @@ const RoomDetails = () => {
                 </span>
               </button>
 
+              {/* review modal */}
               {isModalOpen && (
                 <div className="fixed inset-0 bg-black/40 backdrop-blur-xs bg-opacity-90 flex justify-center items-center z-50 p-5">
                   <div className=" rounded-lg shadow-lg p-6 w-[90%] max-w-xl relative bg-[#f5fdfd] dark:bg-[#0f1919]">
@@ -203,6 +218,7 @@ const RoomDetails = () => {
             </button>
           </div>
 
+          {/* booking modal */}
           {confirmOrder && (
             <div className="absolute top-10 right-0 w-auto md:w-[450px] bg-[#f5fdfd] dark:bg-[#0f1919] border border-blue-300 dark:border-gray-600 shadow-xl rounded-xl p-5 z-20">
               <div className="flex justify-between items-center mb-2">
@@ -300,6 +316,7 @@ const RoomDetails = () => {
           <hr className="mt-4 dark:text-gray-700 text-gray-200" />
 
           <div className="mt-4 px-3">
+            {/* carousel */}
             <div className="carousel w-full">
               <div id="item1" className="carousel-item w-full">
                 <img
@@ -315,6 +332,13 @@ const RoomDetails = () => {
                   className="h-[270px] md:h-[470px] w-full object-cover rounded-2xl"
                 />
               </div>
+              <div id="item3" className="carousel-item w-full">
+                <img
+                  src={photo.photo4}
+                  alt={title}
+                  className="h-[270px] md:h-[470px] w-full object-cover rounded-2xl"
+                />
+              </div>
             </div>
             <div className="flex w-full justify-center gap-2 py-2">
               <a href="#item1" className="btn btn-xs">
@@ -323,25 +347,104 @@ const RoomDetails = () => {
               <a href="#item2" className="btn btn-xs">
                 2
               </a>
+              <a href="#item3" className="btn btn-xs">
+                3
+              </a>
             </div>
           </div>
+          {/*  {amenities.some(item =>
+            item
+              .toLowerCase()
+              .replace(/\s+/g, '')
+              .includes('relax'.toLowerCase().replace(/\s+/g, ''))
+          ) && (
+            
+          )} */}
 
+          {/* spa */}
+          {amenities.some(item =>
+            item
+              .toLowerCase()
+              .replace(/\s+/g, '')
+              .includes('spa'.toLowerCase().replace(/\s+/g, ''))
+          ) && (
+            <div className="mt-10 px-3">
+              <div className="text-center">
+                <h2 className="text-5xl mb-3 jost font-extrabold">
+                  A World of Spa
+                </h2>
+                <p className="text-gray-700 dark:text-gray-200 jost mx-24 mb-12">
+                  Nestled within the heart of our hotel, our spa is a sanctuary
+                  of relaxation and rejuvenation, dedicated to enhancing your
+                  well-being and restoring your inner balance.
+                </p>
+              </div>
+              <img
+                src={photo.photo5}
+                alt={title}
+                className=" h-[270px] md:h-[370px] w-full object-cover"
+              />
+            </div>
+          )}
+
+          {/* relax */}
+          {amenities.some(item =>
+            item
+              .toLowerCase()
+              .replace(/\s+/g, '')
+              .includes('Shuttle'.toLowerCase().replace(/\s+/g, ''))
+          ) && (
+            <div className="mt-32 px-3 grid grid-cols-9 gap-10">
+              <div className=" col-span-4 place-content-center text-center">
+                <h2 className="text-4xl mb-5 jost font-extrabold tracking-widest">
+                  Relax
+                </h2>
+                <p className="text-left text-gray-700 dark:text-gray-200 jost">
+                  Unwind in serene comfort with our spa, heated pools, and cozy
+                  lounges. Experience pure tranquility surrounded by
+                  breathtaking winter landscapes.
+                </p>
+              </div>
+              <img
+                src={photo.photo3}
+                alt={title}
+                className="col-span-5 h-[270px] md:h-[470px] w-full object-cover"
+              />
+            </div>
+          )}
+
+          {/* restaurant */}
+          {amenities.some(item =>
+            item
+              .toLowerCase()
+              .replace(/\s+/g, '')
+              .includes('Restaurant'.toLowerCase().replace(/\s+/g, ''))
+          ) && (
+            <div className="mt-32 mb-24 px-3 grid grid-cols-9 gap-10">
+              <img
+                src={photo.photo6}
+                alt={title}
+                className="col-span-5 h-[270px] md:h-[470px] w-full object-cover"
+              />
+              <div className=" col-span-4 place-content-center text-center">
+                <h2 className="text-4xl mb-5 jost font-extrabold tracking-widest">
+                  Restaurant
+                </h2>
+                <p className="text-left text-gray-700 dark:text-gray-200 jost">
+                  Executive Chef, showcases their expertise and passion for fine
+                  dining by using the finest, locally sourced ingredients
+                </p>
+              </div>
+            </div>
+          )}
+
+          {/* Overview */}
           <div className=" border my-5 mx-2.5 py-3 px-4 rounded-2xl dark:border-gray-600 border-gray-300">
             <h2 className="text-2xl font-semibold">Overview</h2>
             <hr className="m-3 dark:text-gray-700 text-gray-200" />
             <div className="grid grid-cols-1 md:grid-cols-8 px-3.5">
               <div className="mt-3 col-span-4">
-                <p className=" gap-x-2 mb-6">
-                  <span className="  text-gray-500 gap-1.5">Bed Type: </span>
-                  {bedType}
-                </p>
-
-                <p className=" gap-x-2 mb-4">
-                  <span className=" text-gray-500 gap-1.5">Capacity: </span>
-                  {capacity}
-                </p>
-
-                <div className="">
+                <div>
                   <p className=" text-gray-500 gap-x-1.5">Amenities: </p>
                   <div className="pt-3">
                     {amenities.map((Facilities, index) => (
@@ -357,11 +460,6 @@ const RoomDetails = () => {
               </div>
               <div className="justify-start col-span-4 mt-3">
                 <p className=" gap-x-2 mb-6">
-                  <span className=" text-gray-500 gap-1.5">Price: </span>$
-                  {price}{' '}
-                  <span className="font-light text-xs">Every Night</span>
-                </p>
-                <p className=" gap-x-2 mb-6">
                   <span className=" text-gray-500 gap-1.5">Available: </span>
                   <span
                     className={`uppercase font-semibold text-green-600 ${
@@ -371,14 +469,11 @@ const RoomDetails = () => {
                     {available ? 'Vacant' : 'Not Vacant'}
                   </span>
                 </p>
-
-                <p className="gap-x-2 mb-6">
-                  <span className=" text-gray-500 gap-1.5">Room Size: </span>
-                  {roomSize} Square feet
-                </p>
               </div>
             </div>
           </div>
+
+          {/* Description */}
           <div className=" px-3">
             <p className="flex items-center gap-2 font-semibold text-gray-400">
               <MdDescription /> Description:
@@ -387,6 +482,7 @@ const RoomDetails = () => {
           </div>
         </div>
 
+        {/* short side */}
         <div className="md:col-span-4 sticky top-21 h-fit">
           <div className="border  border-gray-300 dark:border-gray-600 rounded-2xl p-5">
             <p className="flex items-center gap-1.5 text-sm">
@@ -401,6 +497,39 @@ const RoomDetails = () => {
             <h3>
               <span className="text-gray-400">Email:</span> {hr_email}
             </h3>
+
+            {isModalOpen && (
+              <div className="fixed inset-0 bg-black/40 backdrop-blur-xs bg-opacity-90 flex justify-center items-center z-50 p-5">
+                <div className=" rounded-lg shadow-lg p-6 w-[90%] max-w-xl relative bg-[#f5fdfd] dark:bg-[#0f1919]">
+                  <button
+                    onClick={() => setIsModalOpen(false)}
+                    className="absolute top-1 right-3 text-gray-500 hover:text-red-500 text-xl"
+                  >
+                    ✕
+                  </button>
+                  <h2 className="text-2xl font-semibold mb-4">
+                    Customer Reviews
+                  </h2>
+
+                  {review.length > 0 ? (
+                    review.map((item, index) => (
+                      <div
+                        key={index}
+                        className="border-b border-gray-200 py-2 mb-2"
+                      >
+                        <p className="font-semibold">{item.name}</p>
+                        <p className="text-yellow-500 flex items-center gap-1">
+                          {item.star} <FaStar />
+                        </p>
+                        <p>{item.review}</p>
+                      </div>
+                    ))
+                  ) : (
+                    <p>No reviews</p>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
 
           <Link
